@@ -1,0 +1,12 @@
+{
+    "version": "0.3.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Darji Point",
+            "url": "http://localhost:3001",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
