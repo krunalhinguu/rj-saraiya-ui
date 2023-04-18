@@ -5,6 +5,7 @@ import { router } from "./data/routes";
 
 import "./styles/global.css";
 import "./styles/fonts.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

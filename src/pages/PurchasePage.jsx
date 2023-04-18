@@ -1,14 +1,14 @@
 import React from "react";
-import Order from "../components/Order";
 import Header from "../components/Header";
+import Purchase from "../components/Purchase/Purchase";
 
-const OrderPage = () => {
+const PurchasePage = () => {
   return (
     <div className="w-full h-screen">
       <Header />
-      <Order />
+      <Purchase />
     </div>
   );
 };
 
-export default OrderPage;
+export default PurchasePage;

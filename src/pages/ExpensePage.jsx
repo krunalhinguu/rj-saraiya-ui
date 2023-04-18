@@ -1,15 +1,14 @@
 import React from "react";
-
 import Header from "../components/Header";
-import Worker from "../components/Worker/Worker";
+import Expense from "../components/Expense/Expense";
 
-const WorkerPage = () => {
+const ExpensePage = () => {
   return (
     <div className="w-full h-screen">
       <Header />
-      <Worker />
+      <Expense />
     </div>
   );
 };
 
-export default WorkerPage;
+export default ExpensePage;

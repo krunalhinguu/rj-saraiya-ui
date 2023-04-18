@@ -1,15 +1,14 @@
 import React from "react";
-
 import Header from "../components/Header";
-import Worker from "../components/Worker/Worker";
+import Admin from "../components/Admin/Admin";
 
-const WorkerPage = () => {
+const AdminPage = () => {
   return (
     <div className="w-full h-screen">
       <Header />
-      <Worker />
+      <Admin />
     </div>
   );
 };
 
-export default WorkerPage;
+export default AdminPage;

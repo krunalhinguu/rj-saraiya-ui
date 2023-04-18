@@ -2,8 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 
 // pages
 import LoginPage from "../pages/LoginPage";
-import OrderPage from "../pages/OrderPage";
 import WorkerPage from "../pages/WorkerPage";
+import CustomerPage from "../pages/CustomerPage";
+import ExpensePage from "../pages/ExpensePage";
+import PurchasePage from "../pages/PurchasePage";
+import AdminPage from "../pages/AdminPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,10 +15,22 @@ export const router = createBrowserRouter([
   },
   {
     path: "customer",
-    element: <OrderPage />,
+    element: <CustomerPage />,
   },
   {
     path: "/worker",
     element: <WorkerPage />,
+  },
+  {
+    path: "/expense",
+    element: <ExpensePage />,
+  },
+  {
+    path: "/purchase",
+    element: <PurchasePage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
   },
 ]);

@@ -9,9 +9,17 @@ const styles = {
   shop_name: "text-[15px] text-blue-400",
   active_indicator: "absolute bottom-[-27%] left-0 h-[3px] w-full bg-[crimson]",
   input:
-    "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#e40414] focus:border-[#e40414] sm:text-sm",
-  button:
-    "flex justify-center w-full h-[40px] mt-[40px] py-2 px-4 border border-transparent text-sm rounded-md cursor-pointer text-white font-extrabold bg-[#e40414] hover:bg-[#e93643]",
+    "appearance-none block w-full px-3 py-2 border border-gray-300 text-slate-900 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#e40414] focus:border-[#e40414] sm:text-sm",
+  inputSelect:
+    "block bg-white w-full px-3 py-2 border border-gray-300 text-slate-900 text-sm rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#e40414] focus:border-[#e40414] ",
+  // button:
+  //   "flex justify-center w-full mt-[40px] py-2 px-4 border border-transparent text-sm rounded-md cursor-pointer text-white font-extrabold bg-[#e40414] hover:bg-[#e93643]",
+  buttonPrimary:
+    "rounded-md bg-[#e40414] min-w-[100px] mx-1 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#e93643] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e93643]",
+  buttonSecondary:
+    "rounded-md bg-slate-500 min-w-[100px] mx-1 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600",
+  label: "text-base text-sm font-semibold leading-7 text-gray-500",
+  error: "mt-1 text-sm text-red-400",
   cart_button_text: "text-[#fff] text-[16px] font-[600]",
   // input: "w-full border p-1 rounded-[5px]",
   activeStatus:

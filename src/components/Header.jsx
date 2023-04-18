@@ -1,5 +1,11 @@
 import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import {
+  Dialog,
+  Disclosure,
+  Popover,
+  Switch,
+  Transition,
+} from "@headlessui/react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { HiBars3 } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
@@ -12,6 +18,7 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [enabled, setEnabled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   function ActiveLink(props) {
@@ -30,14 +37,13 @@ export default function Header() {
   return (
     <header className="border-b- border-b-gray-500">
       <nav
-        className="mx-auto flex w-full items-center justify-between p-2 lg:px-8"
+        className="mx-auto border-b-2 flex w-full items-center justify-between p-2 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <NavLink to="/customer" className="-m-1.5 p-1.5">
             <img className="w-20" src="logo512.png" alt="logo" />
-          </a>
+          </NavLink>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -56,7 +62,28 @@ export default function Header() {
             </ActiveLink>
           ))}
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 gap-1 lg:justify-end">
+          <Switch.Group>
+            <Switch.Label className="text-sm font-semibold leading-6 mr-2">
+              English
+            </Switch.Label>
+            <Switch
+              as="button"
+              checked={enabled}
+              onChange={() => setEnabled(!enabled)}
+              className={`${enabled ? "bg-red-900" : "bg-red-700/80"}
+          relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+            >
+              <span
+                aria-hidden="true"
+                className={`${enabled ? "translate-x-6" : "translate-x-0"}
+            pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+              />
+            </Switch>
+            <Switch.Label className="text-sm font-semibold leading-6 mx-2">
+              Gujarati
+            </Switch.Label>
+          </Switch.Group>
           <a
             href="#"
             className="text-sm font-semibold leading-6 text-[#e40414]"
@@ -74,10 +101,9 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img src="logo512.png" alt="logo" width={100} />
-            </a>
+            <NavLink to="/customer" className="-m-1.5 p-1.5">
+              <img className="w-20" src="logo512.png" alt="logo" width={100} />
+            </NavLink>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
