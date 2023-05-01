@@ -44,11 +44,6 @@ const CalculateSalary = () => {
       endDate = moment().endOf("month");
     }
 
-    if (value === "next") {
-      startDate = moment().add(1, "month").startOf("month");
-      endDate = moment().add(1, "month").endOf("month");
-    }
-
     if (value === "previous") {
       startDate = moment().subtract(1, "month").startOf("month");
       endDate = moment().subtract(1, "month").endOf("month");
@@ -125,7 +120,6 @@ const CalculateSalary = () => {
                 <option>Choose Month</option>
                 <option value="previous">Previous Month</option>
                 <option value="current">Current Month</option>
-                <option value="next">Next Month</option>
               </select>
             </div>
           </div>
@@ -155,6 +149,9 @@ const CalculateSalary = () => {
             </p>
             <p className="text-lg font-bold">
               {t("common.dailyWage")}: {data.attendedDays}
+            </p>
+            <p className="text-lg font-bold">
+              {t("common.totalHours")}: {data.totalHours}
             </p>
             <p className="text-lg font-bold">
               {t("common.total")}: {data.calculatedSalary}

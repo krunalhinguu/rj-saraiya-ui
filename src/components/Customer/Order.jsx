@@ -51,13 +51,24 @@ const Order = () => {
     );
   };
 
-  const handleInputChange = (index, quantity) => {
+  const handleQuatityChange = (index, quantity) => {
     setSelectedOptions((prevValues) => {
       const newValues = [...prevValues];
       if (quantity) {
         newValues[index].quantity = quantity;
         newValues[index].totalAmount = quantity * newValues[index].price;
       } else newValues[index].totalAmount = 0;
+      return newValues;
+    });
+  };
+
+  const handlePriceChange = (index, price) => {
+    setSelectedOptions((prevValues) => {
+      const newValues = [...prevValues];
+
+      newValues[index].price = price;
+      newValues[index].totalAmount = price * newValues[index].quantity;
+
       return newValues;
     });
   };
@@ -71,13 +82,16 @@ const Order = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-  const filteredOptions = products.filter(
-    (option) =>
-      option &&
-      option.productName
-        .toLowerCase()
-        .includes(searchQuery && searchQuery.toLowerCase()),
-  );
+  const filteredOptions =
+    products &&
+    products.length > 0 &&
+    products.filter(
+      (option) =>
+        option &&
+        option.productName
+          .toLowerCase()
+          .includes(searchQuery && searchQuery.toLowerCase()),
+    );
 
   const fetchAllProductTypes = async () => {
     instance
@@ -112,7 +126,7 @@ const Order = () => {
       .catch((error) => console.error(error));
   };
 
-  const fetchAllProductSubTypesByProductTpe = async (id) => {
+  const fetchAllProductSubTypesByProductType = async (id) => {
     instance
       .get(`products/type/${id}/subtype`)
       .then(({ data }) => {
@@ -147,7 +161,7 @@ const Order = () => {
     const value = e.target.value;
 
     setProductType(value);
-    fetchAllProductSubTypesByProductTpe(value);
+    fetchAllProductSubTypesByProductType(value);
   };
 
   const handleProductSubTypeChange = async (e) => {
@@ -181,8 +195,9 @@ const Order = () => {
             resetForm();
             fetchInvoiceNo();
 
-            setProductType("");
-            setProductSubType("");
+            setTypes([]);
+            setSubTypes([]);
+            setProducts([]);
             setSelectedOptions([]);
           }
           setIsLoading(false);
@@ -458,21 +473,24 @@ const Order = () => {
                   </th>
 
                   <td className="px-6 py-3">
-                    <NumericFormat
+                    <input
+                      type="number"
+                      name="price"
                       value={item.price}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"₹"}
+                      onFocus={(e) => e.target.select()}
+                      className="bg-transparent"
+                      placeholder="Enter Price"
+                      onChange={(e) => handlePriceChange(i, e.target.value)}
                     />
                   </td>
                   <td className="px-6 py-3">
                     <input
                       type="number"
-                      name="phone"
+                      name="quantity"
                       onFocus={(e) => e.target.select()}
                       className="bg-transparent"
                       placeholder="Enter Quantity"
-                      onChange={(e) => handleInputChange(i, e.target.value)}
+                      onChange={(e) => handleQuatityChange(i, e.target.value)}
                     />
                   </td>
                   <td className="px-6 py-3">

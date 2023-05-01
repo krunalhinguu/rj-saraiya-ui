@@ -2,7 +2,7 @@ import axios from "axios";
 import moment from "moment";
 
 export const instance = axios.create({
-  baseURL: "http://localhost:8081/v1/",
+  baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 50000,
 });
 

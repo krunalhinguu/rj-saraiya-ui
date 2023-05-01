@@ -126,6 +126,14 @@ const WorkerAttendance = () => {
       values.startTime = values.start && values.start.toISOString();
       values.endTime = values.end && values.end.toISOString();
 
+      // Calculate the difference in hours between the start and end times
+      const startTime = moment(values.startTime);
+      const endTime = moment(values.endTime);
+
+      const totalHours = endTime.diff(startTime, "hours", true);
+
+      values.totalHours = totalHours;
+
       setIsLoading(true);
 
       instance
@@ -202,7 +210,7 @@ const WorkerAttendance = () => {
                 timeIntervals={30}
                 selected={formik.values.start}
                 onChange={(date) => formik.setFieldValue("start", date)}
-                className={`${styles.inputSelect}`}
+                className={`${styles.inputSelect} py-2`}
               />
               {formik.errors.start ? (
                 <div className={`${styles.error}`}>{formik.errors.start}</div>
@@ -220,7 +228,7 @@ const WorkerAttendance = () => {
                 timeIntervals={30}
                 selected={formik.values.end}
                 onChange={(date) => formik.setFieldValue("end", date)}
-                className={`${styles.inputSelect}`}
+                className={`${styles.inputSelect} py-2`}
               />
               {formik.errors.end ? (
                 <div className={`${styles.error}`}>{formik.errors.end}</div>
