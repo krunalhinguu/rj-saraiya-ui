@@ -1,12 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ButtonSpinner = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <svg
         aria-hidden="true"
         role="status"
-        class="inline w-4 h-4 mr-3 text-white animate-spin"
+        className="inline w-4 h-4 mr-3 text-white animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +22,7 @@ const ButtonSpinner = () => {
           fill="currentColor"
         />
       </svg>
-      Loading...
+      {t("common.loading")}...
     </div>
   );
 };

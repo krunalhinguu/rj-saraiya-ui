@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../components/Header";
-import Admin from "../components/Admin/Admin";
+import Report from "../components/Report/Report";
 
-const AdminPage = () => {
+const ReportPage = () => {
   return (
     <div className="w-full h-screen">
       <Header />
-      <Admin />
+      <Report />
     </div>
   );
 };
 
-export default AdminPage;
+export default ReportPage;

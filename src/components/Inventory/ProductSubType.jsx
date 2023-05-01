@@ -1,50 +1,63 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/styles";
-import ReactDatePicker from "react-datepicker";
 import { useFormik } from "formik";
 import { instance } from "../../server";
+import { DATE_FORMAT } from "../../data/const";
 
 import * as Yup from "yup";
-import CustomDialoag from "../CustomDialoag";
 import moment from "moment";
-import { DATE_FORMAT } from "../../data/const";
-import ButtonSpinner from "../ButtonSpinner";
+import ReactDatePicker from "react-datepicker";
+
+import CustomDialoag from "../CustomDialoag";
 import Spinner from "../Spinner";
+import ButtonSpinner from "../ButtonSpinner";
+
+import styles from "../../styles/styles";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { ReactTransliterate } from "react-transliterate";
 
 // validation
 const formSchema = Yup.object().shape({
-  name: Yup.string().required("product type is required"),
-  date: Yup.date().required("date is required"),
+  name: Yup.string().required("product sub type name is required"),
+  productType: Yup.number().required("product type is required"),
 });
 
 // table header
 const headers = [
   {
-    key: "name",
-    name: "product type",
+    key: "productSubType",
+    name: "common.productSubType",
   },
   {
-    key: "details",
-    name: "product details",
+    key: "productType",
+    name: "common.productType",
   },
   {
     key: "date",
-    name: "recorded date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
-const ProductType = () => {
+const ProductSubType = () => {
+  const { t } = useTranslation();
+
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
+  const [types, setTypes] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
 
   useEffect(() => {
+    fetchAllProductTypes();
     fetchAll();
   }, []);
 
@@ -52,7 +65,7 @@ const ProductType = () => {
   const fetchAll = async () => {
     setIsDataLoading(true);
     await instance
-      .get("products/type")
+      .get("products/subtype")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setData(data.body);
@@ -65,9 +78,20 @@ const ProductType = () => {
       });
   };
 
-  const deleteData = async () => {
+  const fetchAllProductTypes = async () => {
     instance
-      .delete(`products/type/${id}`)
+      .get("products/type")
+      .then(({ data }) => {
+        if (data.responseCode === "OK") {
+          setTypes(data.body);
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const deleteData = () => {
+    instance
+      .delete(`products/subtype/${id}`)
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           fetchAll();
@@ -77,10 +101,10 @@ const ProductType = () => {
       .catch((error) => console.error(error));
   };
 
-  const handleEdit = (d) => {
+  const handleEdit = async (d) => {
     formik.setFieldValue("id", d.id);
     formik.setFieldValue("name", d.name);
-    formik.setFieldValue("details", d.details);
+    formik.setFieldValue("productType", d.productTypeId);
   };
 
   const handleDelete = (id) => {
@@ -92,14 +116,15 @@ const ProductType = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      details: "",
+      productType: "",
       date: new Date(),
     },
     validationSchema: formSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: (values, { resetForm }) => {
       setIsLoading(true);
+
       instance
-        .post("products/type", values)
+        .post("products/subtype", values)
         .then(({ data }) => {
           if (data.responseCode === "OK") {
             fetchAll();
@@ -120,46 +145,60 @@ const ProductType = () => {
         {/* form */}
         <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-            {/* name */}
+            {/* product type */}
             <div>
-              <span className={`${styles.label}`}>Name</span>
-              <input
-                type="text"
-                name="name"
-                value={formik.values.name}
+              <span className={`${styles.label}`}>
+                {t("common.productType")}
+              </span>
+              <select
+                id="productType"
+                className={`${styles.inputSelect}`}
+                value={formik.values.productType}
                 onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+              >
+                <option>Choose Product Type</option>
+                {types.map((t, i) => (
+                  <option key={i} value={t.id}>
+                    {t.name}
+                  </option>
+                ))}
+              </select>
+              {formik.errors.productType ? (
+                <div className={`${styles.error}`}>
+                  {formik.errors.productType}
+                </div>
+              ) : null}
+            </div>
+
+            {/* product sub type */}
+            <div>
+              <span className={`${styles.label}`}>
+                {t("common.productSubType")}
+              </span>
+              <ReactTransliterate
+                value={formik.values.name}
+                onChangeText={(text) => formik.setFieldValue("name", text)}
                 className={`${styles.input}`}
-                placeholder="Enter Product Type"
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
               {formik.errors.name ? (
                 <div className={`${styles.error}`}>{formik.errors.name}</div>
               ) : null}
             </div>
-            {/* details */}
-            <div>
-              <span className={`${styles.label}`}>Detail</span>
-              <input
-                type="text"
-                name="details"
-                value={formik.values.details}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-                placeholder="Enter Details About Product"
-              />
-            </div>
+
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
-                placeholder="Enter Details About Product"
               />
             </div>
             {formik.errors.date ? (
@@ -174,11 +213,11 @@ const ProductType = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -190,13 +229,13 @@ const ProductType = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>
@@ -216,7 +255,7 @@ const ProductType = () => {
                       {d.name}
                     </th>
 
-                    <td className="px-6 py-4">{d.details}</td>
+                    <td className="px-6 py-4">{d.productType}</td>
                     <td className="px-6 py-4">
                       {moment(d.date).format(DATE_FORMAT)}
                     </td>
@@ -257,4 +296,4 @@ const ProductType = () => {
   );
 };
 
-export default ProductType;
+export default ProductSubType;

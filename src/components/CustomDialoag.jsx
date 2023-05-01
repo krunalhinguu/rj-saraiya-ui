@@ -55,17 +55,17 @@ const CustomDialoag = ({
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={handleSuccess}
-                    >
-                      {primaryButtonText}
-                    </button>
-                    <button
-                      type="button"
-                      className="ml-2 inline-flex justify-center rounded-md border border-red-100 px-4 py-2 text-sm font-medium text-red-500/80 hover:bg-red-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-red-100 px-4 py-2 text-sm font-medium text-red-500/80 hover:bg-red-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={() => setIsOpen(false)}
                     >
                       {secondaryButtonText}
+                    </button>
+                    <button
+                      type="button"
+                      className="ml-2 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={handleSuccess}
+                    >
+                      {primaryButtonText}
                     </button>
                   </div>
                 </Dialog.Panel>

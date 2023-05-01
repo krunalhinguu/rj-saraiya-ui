@@ -6,7 +6,13 @@ import WorkerPage from "../pages/WorkerPage";
 import CustomerPage from "../pages/CustomerPage";
 import ExpensePage from "../pages/ExpensePage";
 import PurchasePage from "../pages/PurchasePage";
-import AdminPage from "../pages/AdminPage";
+import InventoryPage from "../pages/InventoryPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import ReportPage from "../pages/ReportPage";
+import PrivateRoute from "../utils/PrivateRoute";
+import AdminRoute from "../utils/AdminRoute";
+import Unauthorised from "../pages/Unauthorised";
+import AboutPage from "../pages/AboutPage";
 
 export const router = createBrowserRouter([
   {
@@ -14,23 +20,67 @@ export const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "customer",
-    element: <CustomerPage />,
+    path: "/",
+    element: (
+      <PrivateRoute>
+        <CustomerPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/report",
+    element: (
+      <PrivateRoute>
+        <ReportPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/worker",
-    element: <WorkerPage />,
+    element: (
+      <PrivateRoute>
+        <WorkerPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/expense",
-    element: <ExpensePage />,
+    element: (
+      <PrivateRoute>
+        <ExpensePage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/purchase",
-    element: <PurchasePage />,
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <PurchasePage />
+        </AdminRoute>
+      </PrivateRoute>
+    ),
   },
   {
-    path: "/admin",
-    element: <AdminPage />,
+    path: "/inventory",
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <InventoryPage />
+        </AdminRoute>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
+  },
+  {
+    path: "/unauthorised",
+    element: <Unauthorised />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);

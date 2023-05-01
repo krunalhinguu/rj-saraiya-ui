@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Spinner = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <div role="status" className="flex justify-center items-center mt-4">
@@ -20,7 +22,7 @@ const Spinner = () => {
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">{t("common.loading")}...</span>
       </div>
     </div>
   );

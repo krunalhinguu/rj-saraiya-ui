@@ -9,6 +9,7 @@ import moment from "moment";
 import { DATE_FORMAT, TIME_FORMAT } from "../../data/const";
 import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
+import { useTranslation } from "react-i18next";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -20,31 +21,32 @@ const formSchema = Yup.object().shape({
 const headers = [
   {
     key: "Worker",
-    name: "worker name",
+    name: "common.workerName",
   },
   {
     key: "date",
-    name: "date",
+    name: "common.date",
   },
   {
     key: "isPresent",
-    name: "Avaibility",
+    name: "common.availability",
   },
   {
     key: "startTime",
-    name: "start time",
+    name: "common.startTime",
   },
   {
     key: "endTime",
-    name: "end time",
+    name: "common.endTime",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const WorkerAttendance = () => {
+  const { t } = useTranslation();
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [workers, setWorkers] = useState([]);
@@ -98,12 +100,11 @@ const WorkerAttendance = () => {
   };
 
   const handleEdit = async (d) => {
-    console.log("🚀 ~ file: WorkerAttendance.jsx:101 ~ handleEdit ~ d:", d);
     formik.setFieldValue("id", d.id);
     formik.setFieldValue("worker", d.workerId);
     formik.setFieldValue("present", d.present);
-    // formik.setFieldValue("startTime", d.startTime);
-    // formik.setFieldValue("endTime", d.endTime);
+    formik.setFieldValue("start", new Date(d.startTime));
+    formik.setFieldValue("end", new Date(d.endTime));
   };
 
   const handleDelete = (id) => {
@@ -115,13 +116,16 @@ const WorkerAttendance = () => {
   const formik = useFormik({
     initialValues: {
       worker: "",
-      date: new Date(),
+      date: moment(),
       present: "",
-      startTime: new Date(),
-      endTime: new Date(),
+      start: moment().toDate(),
+      end: moment().toDate(),
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
+      values.startTime = values.start && values.start.toISOString();
+      values.endTime = values.end && values.end.toISOString();
+
       setIsLoading(true);
 
       instance
@@ -134,6 +138,7 @@ const WorkerAttendance = () => {
           setIsLoading(false);
         })
         .catch((error) => {
+          alert(error.response.data.errorMessage);
           setIsLoading(false);
           console.error(error);
         });
@@ -148,7 +153,9 @@ const WorkerAttendance = () => {
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {/* Worker Name */}
             <div>
-              <span className={`${styles.label}`}>Worker Name</span>
+              <span className={`${styles.label}`}>
+                {t("common.workerName")}
+              </span>
               <select
                 id="worker"
                 className={`${styles.inputSelect}`}
@@ -167,23 +174,11 @@ const WorkerAttendance = () => {
               ) : null}
             </div>
 
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>Date</span>
-              <ReactDatePicker
-                selected={formik.values.date}
-                type="text"
-                name="date"
-                onChange={(date) => formik.setFieldValue("date", date)}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-                placeholder="Enter Details About Product"
-              />
-            </div>
-
             {/* Avaibility */}
             <div>
-              <span className={`${styles.label}`}>Avaibility</span>
+              <span className={`${styles.label}`}>
+                {t("common.availability")}
+              </span>
               <select
                 id="present"
                 className={`${styles.inputSelect}`}
@@ -198,41 +193,37 @@ const WorkerAttendance = () => {
 
             {/* Start Time */}
             <div>
-              <span className={`${styles.label}`}>Start Time</span>
+              <span className={`${styles.label}`}>{t("common.startTime")}</span>
               <ReactDatePicker
-                selected={formik.values.startTime}
-                onChange={(date) => formik.setFieldValue("startTime", date)}
                 showTimeSelect
                 showTimeSelectOnly
-                timeIntervals={30}
                 timeCaption="Time"
                 dateFormat="h:mm aa"
+                timeIntervals={30}
+                selected={formik.values.start}
+                onChange={(date) => formik.setFieldValue("start", date)}
                 className={`${styles.inputSelect}`}
               />
-              {formik.errors.startTime ? (
-                <div className={`${styles.error}`}>
-                  {formik.errors.startTime}
-                </div>
+              {formik.errors.start ? (
+                <div className={`${styles.error}`}>{formik.errors.start}</div>
               ) : null}
             </div>
 
             {/* End Time */}
             <div>
-              <span className={`${styles.label}`}>End Time</span>
+              <span className={`${styles.label}`}>{t("common.endTime")}</span>
               <ReactDatePicker
-                selected={formik.values.endTime}
-                onChange={(date) => formik.setFieldValue("endTime", date)}
                 showTimeSelect
                 showTimeSelectOnly
-                timeIntervals={30}
                 timeCaption="Time"
                 dateFormat="h:mm aa"
+                timeIntervals={30}
+                selected={formik.values.end}
+                onChange={(date) => formik.setFieldValue("end", date)}
                 className={`${styles.inputSelect}`}
               />
-              {formik.errors.startTime ? (
-                <div className={`${styles.error}`}>
-                  {formik.errors.startTime}
-                </div>
+              {formik.errors.end ? (
+                <div className={`${styles.error}`}>{formik.errors.end}</div>
               ) : null}
             </div>
           </div>
@@ -244,11 +235,11 @@ const WorkerAttendance = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -266,7 +257,7 @@ const WorkerAttendance = () => {
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>
@@ -283,7 +274,7 @@ const WorkerAttendance = () => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
-                      {d.worker}
+                      {d.workerName}
                     </th>
                     <td className="px-6 py-4">
                       {moment(d.date).format(DATE_FORMAT)}

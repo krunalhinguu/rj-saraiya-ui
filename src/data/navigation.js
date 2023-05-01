@@ -1,27 +1,38 @@
-export const navigation = [
+export const nav = [
   {
     key: "customer",
-    name: "Customer",
-    url: "/customer",
+    name: "nav.customer",
+    url: "/",
+    isAdmin: false,
+  },
+  {
+    key: "daily",
+    name: "nav.dailyReport",
+    url: "/report",
+    isAdmin: false,
   },
   {
     key: "worker",
-    name: "Worker",
+    name: "nav.worker",
     url: "/worker",
+    isAdmin: false,
   },
   {
     key: "expense",
-    name: "Expense",
+    name: "nav.expense",
     url: "/expense",
+    isAdmin: false,
   },
   {
     key: "purchase",
-    name: "Purchase",
+    name: "nav.purchase",
     url: "/purchase",
+    isAdmin: true,
   },
   {
-    key: "admin",
-    name: "Admin Management",
-    url: "/admin",
+    key: "inventory",
+    name: "nav.inventory",
+    url: "/inventory",
+    isAdmin: true,
   },
 ];

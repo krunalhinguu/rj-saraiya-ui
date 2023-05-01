@@ -1,11 +1,14 @@
 import React from "react";
 import { Tab } from "@headlessui/react";
+import { useTranslation } from "react-i18next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const CustomTab = ({ tabs }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="container-fluid m-2 mt-4">
       <div className="w-full sm:px-0">
@@ -26,7 +29,7 @@ const CustomTab = ({ tabs }) => {
                     )
                   }
                 >
-                  {tab.name}
+                  {t(tab.name)}
                 </Tab>
               ))}
           </Tab.List>

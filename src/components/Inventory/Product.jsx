@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/styles";
-import ReactDatePicker from "react-datepicker";
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { ReactTransliterate } from "react-transliterate";
 import { instance } from "../../server";
+import { DATE_FORMAT } from "../../data/const";
+import { NumericFormat } from "react-number-format";
 
 import * as Yup from "yup";
-import CustomDialoag from "../CustomDialoag";
 import moment from "moment";
-import { DATE_FORMAT } from "../../data/const";
+import ReactDatePicker from "react-datepicker";
+
+import CustomDialoag from "../CustomDialoag";
 import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
-import { NumericFormat, PatternFormat } from "react-number-format";
+
+import styles from "../../styles/styles";
+
 // validation
 const formSchema = Yup.object().shape({
   productName: Yup.string().required("product name is required"),
@@ -23,51 +29,57 @@ const formSchema = Yup.object().shape({
 const headers = [
   {
     key: "productName",
-    name: "product name",
+    name: "common.productName",
   },
   {
     key: "productType",
-    name: "product type",
+    name: "common.productType",
   },
   {
     key: "productSubType",
-    name: "product Sub type",
+    name: "common.productSubType",
   },
   {
     key: "stockRoom",
-    name: "stock room",
+    name: "common.stockRoom",
   },
   {
     key: "price",
-    name: "price",
+    name: "common.amount",
   },
   {
     key: "totalStock",
-    name: "total stock",
+    name: "common.totalStock",
   },
   {
     key: "totalValue",
-    name: "total value",
+    name: "common.totalAmount",
   },
   {
     key: "size",
-    name: "size",
+    name: "common.size",
   },
   {
     key: "details",
-    name: "details",
+    name: "common.details",
   },
   {
     key: "date",
-    name: "recorded date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const Product = () => {
+  const { t } = useTranslation();
+
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [types, setTypes] = useState([]);
@@ -146,10 +158,10 @@ const Product = () => {
     formik.setFieldValue("stockRoom", d.stockRoom);
     formik.setFieldValue("price", d.price);
     formik.setFieldValue("totalStock", d.totalStock);
-    formik.setFieldValue("totalValue", d.totalValue);
     formik.setFieldValue("size", d.size);
     formik.setFieldValue("typeOfQuantity", d.typeOfQuantity);
     formik.setFieldValue("details", d.details);
+    formik.setFieldValue("pinned", d.pinned);
   };
 
   const handleDelete = (id) => {
@@ -166,15 +178,14 @@ const Product = () => {
       stockRoom: "",
       price: "",
       totalStock: "",
-      totalValue: "",
       size: "",
       typeOfQuantity: "pcs",
       details: "",
       date: new Date(),
+      pinned: false,
     },
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log("🚀 ~ file: Product.jsx:140 ~ onSubmit: ~ values:", values);
       setIsLoading(true);
       instance
         .post("products", values)
@@ -200,7 +211,9 @@ const Product = () => {
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {/* product type */}
             <div>
-              <span className={`${styles.label}`}>Product Type</span>
+              <span className={`${styles.label}`}>
+                {t("common.productType")}
+              </span>
               <select
                 id="productType"
                 className={`${styles.inputSelect}`}
@@ -223,14 +236,16 @@ const Product = () => {
 
             {/* product sub type */}
             <div>
-              <span className={`${styles.label}`}>Product Type</span>
+              <span className={`${styles.label}`}>
+                {t("common.productSubType")}
+              </span>
               <select
                 id="productSubType"
                 className={`${styles.inputSelect}`}
                 value={formik.values.productSubType}
                 onChange={formik.handleChange}
               >
-                <option>Choose Sub Product Type</option>
+                <option>Choose Product Sub Type</option>
                 {subTypes.map((t, i) => (
                   <option key={i} value={t.id}>
                     {t.name}
@@ -246,15 +261,18 @@ const Product = () => {
 
             {/* product name */}
             <div>
-              <span className={`${styles.label}`}>Product Name</span>
-              <input
-                type="text"
-                name="productName"
+              <span className={`${styles.label}`}>
+                {t("common.productName")}
+              </span>
+              <ReactTransliterate
                 value={formik.values.productName}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) =>
+                  formik.setFieldValue("productName", text)
+                }
                 className={`${styles.input}`}
-                placeholder="Enter Product Name"
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
               {formik.errors.productName ? (
                 <div className={`${styles.error}`}>
@@ -265,7 +283,7 @@ const Product = () => {
 
             {/* stock room */}
             <div>
-              <span className={`${styles.label}`}>Stock Room</span>
+              <span className={`${styles.label}`}>{t("common.stockRoom")}</span>
               <select
                 id="stockRoom"
                 className={`${styles.inputSelect}`}
@@ -273,8 +291,9 @@ const Product = () => {
                 onChange={formik.handleChange}
               >
                 <option>Choose Stock Room</option>
-                <option>Home</option>
-                <option>Warehouse</option>
+                <option value="home">{t("common.home")}</option>
+                <option value="shop">{t("common.shop")}</option>
+                <option value="warehouse">{t("common.warehouse")}</option>
               </select>
               {formik.errors.stockRoom ? (
                 <div className={`${styles.error}`}>
@@ -285,7 +304,7 @@ const Product = () => {
 
             {/* price */}
             <div>
-              <span className={`${styles.label}`}>Price</span>
+              <span className={`${styles.label}`}>{t("common.amount")}</span>
               <input
                 type="number"
                 name="price"
@@ -299,8 +318,10 @@ const Product = () => {
 
             {/* total stock */}
             <div>
-              <span className={`${styles.label}`}>Total Stock</span>
-              <div class="relative rounded-md shadow-sm">
+              <span className={`${styles.label}`}>
+                {t("common.totalStock")}
+              </span>
+              <div className="relative rounded-md shadow-sm">
                 <input
                   type="number"
                   name="totalStock"
@@ -309,8 +330,8 @@ const Product = () => {
                   className={`${styles.input} pr-20`}
                   placeholder="1 kg, 100 pcs, 300 items"
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center">
-                  <label for="currency" class="sr-only">
+                <div className="absolute inset-y-0 right-0 flex items-center">
+                  <label htmlFor="currency" className="sr-only">
                     Currency
                   </label>
                   <select
@@ -319,31 +340,17 @@ const Product = () => {
                     value={formik.values.typeOfQuantity}
                     onChange={formik.handleChange}
                   >
-                    <option>pcs</option>
-                    <option>kg</option>
-                    {/* <option>items</option> */}
+                    <option>choose</option>
+                    <option value="piece">{t("common.piece")}</option>
+                    <option value="kg">{t("common.kg")}</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* total value */}
-            <div>
-              <span className={`${styles.label}`}>Total Value</span>
-              <input
-                type="number"
-                name="totalValue"
-                value={formik.values.totalValue}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-                placeholder="₹ 5000, 10000"
-              />
-            </div>
-
             {/* size */}
             <div>
-              <span className={`${styles.label}`}>Size</span>
+              <span className={`${styles.label}`}>{t("common.size")}</span>
               <input
                 type="text"
                 name="size"
@@ -357,33 +364,52 @@ const Product = () => {
 
             {/* details */}
             <div>
-              <span className={`${styles.label}`}>Details</span>
-              <input
-                type="text"
-                name="details"
+              <span className={`${styles.label}`}>{t("common.details")}</span>
+              <ReactTransliterate
                 value={formik.values.details}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) => formik.setFieldValue("details", text)}
                 className={`${styles.input}`}
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
             </div>
 
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
-                placeholder="Enter Details About Product"
               />
             </div>
             {formik.errors.date ? (
               <div className={`${styles.error}`}>{formik.errors.date}</div>
             ) : null}
+          </div>
+
+          {/* whatsapp  */}
+          <div className="flex items-center mx-2 mt-4 mb-2">
+            <input
+              name="pinned"
+              id="pinned"
+              type="checkbox"
+              checked={formik.values.pinned}
+              value={formik.values.pinned}
+              className="w-4 h-4"
+              onChange={formik.handleChange}
+            />
+            <label
+              htmlFor="pinned"
+              className="ml-2 text-sm text-slate-500 font-bold"
+            >
+              {t("common.frequentlyUsed")}
+            </label>
           </div>
           {/* buttons */}
           <div className="mt-6 mb-2">
@@ -393,11 +419,11 @@ const Product = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -409,13 +435,13 @@ const Product = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>
@@ -423,7 +449,7 @@ const Product = () => {
             <tbody>
               {data &&
                 data.length > 0 &&
-                data.map((d, i) => (
+                data.map((d) => (
                   <tr
                     key={d.id}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
@@ -432,7 +458,10 @@ const Product = () => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
-                      {d.productName}
+                      <div className="flex">
+                        {d.pinned && "📌 "}
+                        {d.productName}
+                      </div>
                     </th>
 
                     <td className="px-6 py-4">{d.productType}</td>
@@ -462,6 +491,7 @@ const Product = () => {
                     <td className="px-6 py-4">
                       {moment(d.date).format(DATE_FORMAT)}
                     </td>
+
                     <td className="flex items-center px-6 py-4 space-x-3">
                       <button
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

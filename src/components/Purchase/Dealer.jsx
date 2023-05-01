@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/styles";
-import ReactDatePicker from "react-datepicker";
 import { useFormik } from "formik";
 import { instance } from "../../server";
+import { DATE_FORMAT } from "../../data/const";
 
-import * as Yup from "yup";
+import styles from "../../styles/styles";
+import ReactDatePicker from "react-datepicker";
 import CustomDialoag from "../CustomDialoag";
 import moment from "moment";
-import { DATE_FORMAT } from "../../data/const";
 import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
+import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
+import { ReactTransliterate } from "react-transliterate";
+import { useSelector } from "react-redux";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -21,27 +24,33 @@ const formSchema = Yup.object().shape({
 const headers = [
   {
     key: "name",
-    name: "dealer name",
+    name: "common.name",
   },
   {
     key: "address",
-    name: "address",
+    name: "common.address",
   },
   {
     key: "phone",
-    name: "phone",
+    name: "common.mobileNo",
   },
   {
     key: "date",
-    name: "recorded date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const Dealer = () => {
+  const { t } = useTranslation();
+
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -126,40 +135,38 @@ const Dealer = () => {
         {/* form */}
         <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-            {/* name */}
+            {/* dealer name */}
             <div>
-              <span className={`${styles.label}`}>Name</span>
-              <input
-                type="text"
-                name="name"
+              <span className={`${styles.label}`}>{t("common.name")}</span>
+              <ReactTransliterate
                 value={formik.values.name}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) => formik.setFieldValue("name", text)}
                 className={`${styles.input}`}
-                placeholder="Enter Product Type"
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
               {formik.errors.name ? (
                 <div className={`${styles.error}`}>{formik.errors.name}</div>
               ) : null}
             </div>
 
-            {/* address */}
+            {/* dealer address */}
             <div>
-              <span className={`${styles.label}`}>Address</span>
-              <input
-                type="text"
-                name="address"
+              <span className={`${styles.label}`}>{t("common.address")}</span>
+              <ReactTransliterate
                 value={formik.values.address}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) => formik.setFieldValue("address", text)}
                 className={`${styles.input}`}
-                placeholder="Enter Address "
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
             </div>
 
             {/* phone number */}
             <div>
-              <span className={`${styles.label}`}>Phone No.</span>
+              <span className={`${styles.label}`}>{t("common.mobileNo")}</span>
               <input
                 type="number"
                 name="phone"
@@ -173,12 +180,13 @@ const Dealer = () => {
 
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
                 placeholder="Enter Details About Product"
@@ -196,11 +204,11 @@ const Dealer = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -212,13 +220,13 @@ const Dealer = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>

@@ -9,6 +9,7 @@ import moment from "moment";
 import { DATE_FORMAT } from "../../data/const";
 import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
+import { useTranslation } from "react-i18next";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -20,23 +21,24 @@ const formSchema = Yup.object().shape({
 const headers = [
   {
     key: "Worker",
-    name: "worker name",
+    name: "common.workerName",
   },
   {
-    key: "price",
-    name: "price",
+    key: "amount",
+    name: "common.amount",
   },
   {
     key: "date",
-    name: "recorded date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const WorkerDebt = () => {
+  const { t } = useTranslation();
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [workers, setWorkers] = useState([]);
@@ -135,7 +137,9 @@ const WorkerDebt = () => {
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {/* product type */}
             <div>
-              <span className={`${styles.label}`}>Worker Name</span>
+              <span className={`${styles.label}`}>
+                {t("common.workerName")}
+              </span>
               <select
                 id="worker"
                 className={`${styles.inputSelect}`}
@@ -156,7 +160,7 @@ const WorkerDebt = () => {
 
             {/* amount */}
             <div>
-              <span className={`${styles.label}`}>Debt Amount</span>
+              <span className={`${styles.label}`}>{t("common.amount")}</span>
               <input
                 type="number"
                 name="amount"
@@ -164,7 +168,6 @@ const WorkerDebt = () => {
                 onChange={formik.handleChange}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
-                placeholder="Enter Debt Amount"
               />
               {formik.errors.amount ? (
                 <div className={`${styles.error}`}>{formik.errors.amount}</div>
@@ -173,15 +176,15 @@ const WorkerDebt = () => {
 
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
-                placeholder="Enter Details About Product"
               />
             </div>
           </div>
@@ -193,11 +196,11 @@ const WorkerDebt = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -209,13 +212,13 @@ const WorkerDebt = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md  uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>

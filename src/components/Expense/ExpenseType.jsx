@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/styles";
-import ReactDatePicker from "react-datepicker";
 import { useFormik } from "formik";
 import { instance } from "../../server";
+import { DATE_FORMAT } from "../../data/const";
 
-import * as Yup from "yup";
+import styles from "../../styles/styles";
+import ReactDatePicker from "react-datepicker";
 import CustomDialoag from "../CustomDialoag";
 import moment from "moment";
-import { DATE_FORMAT } from "../../data/const";
 import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
+import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { ReactTransliterate } from "react-transliterate";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -21,19 +24,25 @@ const formSchema = Yup.object().shape({
 const headers = [
   {
     key: "name",
-    name: "Expense type",
+    name: "common.expenseType",
   },
   {
     key: "date",
-    name: "recorded date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const ExpenseType = () => {
+  const { t } = useTranslation();
+
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -114,17 +123,16 @@ const ExpenseType = () => {
         {/* form */}
         <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-            {/* name */}
+            {/* expense type */}
             <div>
-              <span className={`${styles.label}`}>Name</span>
-              <input
-                type="text"
-                name="name"
+              <span className={`${styles.label}`}>{t("common.name")}</span>
+              <ReactTransliterate
                 value={formik.values.name}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) => formik.setFieldValue("name", text)}
                 className={`${styles.input}`}
-                placeholder="Enter Expense Type"
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
               {formik.errors.name ? (
                 <div className={`${styles.error}`}>{formik.errors.name}</div>
@@ -133,12 +141,13 @@ const ExpenseType = () => {
 
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
                 placeholder="Enter Details About Expense"
@@ -156,11 +165,11 @@ const ExpenseType = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -172,13 +181,13 @@ const ExpenseType = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>

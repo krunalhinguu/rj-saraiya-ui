@@ -10,38 +10,47 @@ import { DATE_FORMAT } from "../../data/const";
 import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
 import { NumericFormat } from "react-number-format";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { ReactTransliterate } from "react-transliterate";
 
 // validation
 const formSchema = Yup.object().shape({
   price: Yup.number().required("price is required"),
-  expenseType: Yup.number().required("expense type is required"),
+  expense: Yup.number().required("expense type is required"),
 });
 
 // table header
 const headers = [
   {
     key: "expenseType",
-    name: "expense type",
+    name: "common.expenseType",
   },
   {
     key: "price",
-    name: "price",
+    name: "common.amount",
   },
   {
     key: "details",
-    name: "details",
+    name: "common.details",
   },
   {
     key: "date",
-    name: "date",
+    name: "common.date",
   },
   {
     key: "actions",
-    name: "actions",
+    name: "",
   },
 ];
 
 const LogExpense = () => {
+  const { t } = useTranslation();
+
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [types, setTypes] = useState([]);
@@ -96,7 +105,7 @@ const LogExpense = () => {
 
   const handleEdit = async (d) => {
     formik.setFieldValue("id", d.id);
-    formik.setFieldValue("expenseType", d.expenseTypeId);
+    formik.setFieldValue("expense", d.expenseTypeId);
     formik.setFieldValue("price", d.price);
     formik.setFieldValue("details", d.details);
   };
@@ -109,7 +118,7 @@ const LogExpense = () => {
   // formik
   const formik = useFormik({
     initialValues: {
-      expenseType: "",
+      expense: "",
       price: "",
       details: "",
       date: new Date(),
@@ -142,11 +151,13 @@ const LogExpense = () => {
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {/* expense type */}
             <div>
-              <span className={`${styles.label}`}>expense Type</span>
+              <span className={`${styles.label}`}>
+                {t("common.expenseType")}
+              </span>
               <select
-                id="expenseType"
+                id="expense"
                 className={`${styles.inputSelect}`}
-                value={formik.values.expenseType}
+                value={formik.values.expense}
                 onChange={formik.handleChange}
               >
                 <option>Choose Expense Type</option>
@@ -165,7 +176,7 @@ const LogExpense = () => {
 
             {/* price */}
             <div>
-              <span className={`${styles.label}`}>Price</span>
+              <span className={`${styles.label}`}>{t("common.amount")}</span>
               <input
                 type="number"
                 name="price"
@@ -182,25 +193,26 @@ const LogExpense = () => {
 
             {/* details */}
             <div>
-              <span className={`${styles.label}`}>Details</span>
-              <input
-                type="text"
-                name="details"
+              <span className={`${styles.label}`}>{t("common.details")}</span>
+              <ReactTransliterate
                 value={formik.values.details}
-                onChange={formik.handleChange}
-                onFocus={(e) => e.target.select()}
+                onChangeText={(text) => formik.setFieldValue("details", text)}
                 className={`${styles.input}`}
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
             </div>
 
             {/* date */}
             <div>
-              <span className={`${styles.label}`}>Date</span>
+              <span className={`${styles.label}`}>{t("common.date")}</span>
               <ReactDatePicker
                 disabled
-                selected={formik.values.date}
                 type="text"
                 name="date"
+                dateFormat="dd/MM/yyyy"
+                selected={formik.values.date}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
                 placeholder="Enter Details About expense"
@@ -215,11 +227,11 @@ const LogExpense = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <ButtonSpinner /> : "Submit"}
+              {isLoading ? <ButtonSpinner /> : t("common.submit")}
             </button>
             {/* clear */}
             <button className={`${styles.buttonSecondary}`} type="reset">
-              Clear
+              {t("common.clear")}
             </button>
           </div>
         </form>
@@ -231,13 +243,13 @@ const LogExpense = () => {
       ) : (
         <div className="relative overflow-x-auto sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-xs  uppercase bg-red-100 text-slate-500">
+            <thead className="text-md uppercase bg-red-100 text-slate-500">
               <tr>
                 {headers &&
                   headers.length > 0 &&
                   headers.map((header, i) => (
                     <th key={i} scope="col" className="px-6 py-3">
-                      {header.name}
+                      {t(header.name)}
                     </th>
                   ))}
               </tr>
