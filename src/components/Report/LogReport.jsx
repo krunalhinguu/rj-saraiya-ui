@@ -11,6 +11,7 @@ import ButtonSpinner from "../ButtonSpinner";
 import { NumericFormat } from "react-number-format";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -43,6 +44,9 @@ const headers = [
 ];
 
 const LogReport = () => {
+  const props = useSelector((state) => state);
+  const { user } = props;
+
   const { t } = useTranslation();
 
   const [id, setId] = useState();
@@ -292,19 +296,24 @@ const LogReport = () => {
                       <td className="px-6 py-4">
                         {moment(d.date).format(DATE_FORMAT)}
                       </td>
+
                       <td className="flex items-center px-6 py-4 space-x-3">
-                        <button
-                          className="font-medium text-blue-600  hover:underline"
-                          onClick={() => handleEdit(d)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="font-medium text-red-600  hover:underline"
-                          onClick={() => handleDelete(d.id)}
-                        >
-                          Remove
-                        </button>
+                        {user.data.role === "admin" && (
+                          <div className="flex gap-x-4">
+                            <button
+                              className="font-medium text-blue-600  hover:underline"
+                              onClick={() => handleEdit(d)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="font-medium text-red-600  hover:underline"
+                              onClick={() => handleDelete(d.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))}

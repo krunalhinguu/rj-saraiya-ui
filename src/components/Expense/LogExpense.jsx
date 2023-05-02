@@ -48,7 +48,7 @@ const LogExpense = () => {
   const { t } = useTranslation();
 
   const props = useSelector((state) => state);
-  const { navigation } = props;
+  const { user, navigation } = props;
   const { lang } = navigation;
 
   const [id, setId] = useState();
@@ -297,18 +297,22 @@ const LogExpense = () => {
                         {moment(d.date).format(DATE_FORMAT)}
                       </td>
                       <td className="flex items-center px-6 py-4 space-x-3">
-                        <button
-                          className="font-medium text-blue-600  hover:underline"
-                          onClick={() => handleEdit(d)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="font-medium text-red-600  hover:underline"
-                          onClick={() => handleDelete(d.id)}
-                        >
-                          Remove
-                        </button>
+                        {user.data.role === "admin" && (
+                          <div className="flex gap-x-4">
+                            <button
+                              className="font-medium text-blue-600  hover:underline"
+                              onClick={() => handleEdit(d)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="font-medium text-red-600  hover:underline"
+                              onClick={() => handleDelete(d.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))}

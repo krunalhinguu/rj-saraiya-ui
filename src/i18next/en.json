@@ -6,7 +6,8 @@
         "worker": "Worker",
         "expense": "Expense",
         "purchase": "Purchase",
-        "inventory": "Inventory"
+        "inventory": "Inventory",
+        "createUser": "Create User"
     },
     "tabs": {
         "createOrder": "Create Order",

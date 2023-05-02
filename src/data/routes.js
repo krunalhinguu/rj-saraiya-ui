@@ -13,6 +13,7 @@ import PrivateRoute from "../utils/PrivateRoute";
 import AdminRoute from "../utils/AdminRoute";
 import Unauthorised from "../pages/Unauthorised";
 import AboutPage from "../pages/AboutPage";
+import UserPage from "../pages/UserPage";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,16 @@ export const router = createBrowserRouter([
       <PrivateRoute>
         <AdminRoute>
           <InventoryPage />
+        </AdminRoute>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/user",
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <UserPage />
         </AdminRoute>
       </PrivateRoute>
     ),

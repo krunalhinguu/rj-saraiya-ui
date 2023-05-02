@@ -6,7 +6,8 @@
         "worker": "કારીગર",
         "expense": "ખર્ચો",
         "purchase": "ખરીદી",
-        "inventory": "વસ્તુની યાદી"
+        "inventory": "વસ્તુની યાદી",
+        "createUser": "યુઝર બનાવો"
     },
     "tabs": {
         "createOrder": "ઓર્ડર બનાવો",

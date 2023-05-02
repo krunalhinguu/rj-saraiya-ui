@@ -10,6 +10,7 @@ import { DATE_FORMAT, TIME_FORMAT } from "../../data/const";
 import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -46,7 +47,11 @@ const headers = [
 ];
 
 const WorkerAttendance = () => {
+  const props = useSelector((state) => state);
+  const { user } = props;
+
   const { t } = useTranslation();
+
   const [id, setId] = useState();
   const [data, setData] = useState([]);
   const [workers, setWorkers] = useState([]);
@@ -316,18 +321,22 @@ const WorkerAttendance = () => {
                       </td>
 
                       <td className="flex items-center px-6 py-4 space-x-3">
-                        <button
-                          className="font-medium text-blue-600  hover:underline"
-                          onClick={() => handleEdit(d)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="font-medium text-red-600  hover:underline"
-                          onClick={() => handleDelete(d.id)}
-                        >
-                          Remove
-                        </button>
+                        {user.data.role === "admin" && (
+                          <div className="flex gap-x-4">
+                            <button
+                              className="font-medium text-blue-600  hover:underline"
+                              onClick={() => handleEdit(d)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="font-medium text-red-600  hover:underline"
+                              onClick={() => handleDelete(d.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))}

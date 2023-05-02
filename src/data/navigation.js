@@ -35,4 +35,10 @@ export const nav = [
     url: "/inventory",
     isAdmin: true,
   },
+  {
+    key: "user",
+    name: "nav.createUser",
+    url: "/user",
+    isAdmin: true,
+  },
 ];

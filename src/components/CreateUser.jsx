@@ -12,15 +12,16 @@ import { useDispatch } from "react-redux";
 import { encryptStorage } from "../utils/secure-storage";
 import { useTranslation } from "react-i18next";
 
-const Login = () => {
+const CreateUser = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const [visible, setVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = Yup.object().shape({
     username: Yup.string().required("username is required"),
+    name: Yup.string().required("name is required"),
+    role: Yup.string().required("role is required"),
     password: Yup.string().required("password is required"),
   });
 
@@ -28,21 +29,20 @@ const Login = () => {
     initialValues: {
       username: "",
       password: "",
+      name: "",
+      role: "",
+      date: new Date(),
     },
     validationSchema: formSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
       await instance
-        .post("user/authenticate", values)
+        .post("user", values)
         .then(({ data }) => {
-          // alert("Login Successful");
           if (data.responseCode === "OK") {
-            const user = data.body;
-
-            dispatch(login(user));
-            navigate("/", { replace: true });
-
-            alert("Welcome to Ramanlal J Saraiya");
+            console.log("heelo");
+            alert("User created successfully");
+            resetForm();
           }
           setIsLoading(false);
         })
@@ -54,43 +54,43 @@ const Login = () => {
   });
 
   return (
-    <div className="h-screen flex">
-      {/* left */}
-      <div
-        className="hidden lg:flex w-full lg:w-1/2 login_img_section
-          justify-around"
-      >
-        <div className="w-full mx-auto px-20 flex-col space-y-6 mt-[20vh]">
-          {/* logo */}
-          <img src="logo512.png" alt="logo" className="w-80 mx-auto" />
-          {/* text */}
-          <div className="w-max">
-            <h1 className="font-Mukta animate-typing overflow-hidden p-3 break-all whitespace-nowrap border-r-4 border-r-[#e40414] pr-5 text-5xl text-[#e40414] font-bold">
-              {t("title")}
-            </h1>
-          </div>
-          <div className="w-full">
-            <span className="text-lg break-all text-slate-400 font-semibold ">
-              One of the oldest shop in the town (specialist in saffron
-              haldi/केशर पीठी, Mataji Pujapa, Gugal dhoop, loban, fragrances,
-              premium agarbatti), It’s our 4th generation serving the quality
-              products of wedding rituals, Mataji Chundadi - Hawan products,
-              Special Bridal (दुल्हन चुन्नी ओर महेन्दी कोन) chunni and 100%
-              guaranteed Mahendi cone etc.
-            </span>
-          </div>
-        </div>
-      </div>
+    <div className="flex">
       {/* right */}
-      <div className="flex flex-col mt-[20vh] mx-auto py-12 sm:px-6 lg:px-8mx-auto sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="flex flex-col mt-[10vh] mx-auto py-12 sm:px-6 lg:px-8mx-auto sm:mx-auto sm:w-full sm:max-w-md">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="flex justify-center items-center my-6 text-center text-2xl lg:text-center font-extrabold text-gray-900">
-            Login to your account
+          <h2 className="flex justify-center items-center my-6 text-center text-slate-500 text-2xl lg:text-center font-extrabold ">
+            Create Website User
           </h2>
         </div>
         <div className="bg-white rounded-md border-1 border-gray-900/10 p-10 shadow sm:rounder-lg sm:px-10">
           {/* form */}
           <form onSubmit={formik.handleSubmit}>
+            {/* name */}
+            <div className="pt-5">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Name
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onFocus={(e) => e.target.select()}
+                  placeholder="Enter username"
+                  className={`${styles.input}`}
+                />
+              </div>
+            </div>
+            {formik.errors.name && formik.touched.name ? (
+              <div className="mt-2 text-sm text-red-400">
+                {formik.errors.name}
+              </div>
+            ) : null}
+
             {/* username */}
             <div className="pt-5">
               <label
@@ -111,13 +111,14 @@ const Login = () => {
                 />
               </div>
             </div>
-            {formik.errors.username ? (
+            {formik.errors.username && formik.touched.username ? (
               <div className="mt-2 text-sm text-red-400">
                 {formik.errors.username}
               </div>
             ) : null}
+
             {/* password */}
-            <div className="pt-8">
+            <div className="pt-5">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -148,9 +149,34 @@ const Login = () => {
                   />
                 )}
               </div>
-              {formik.errors.password ? (
+              {formik.errors.password && formik.touched.password ? (
                 <div className="mt-2 text-sm text-red-400">
                   {formik.errors.password}
+                </div>
+              ) : null}
+            </div>
+
+            {/* type */}
+            <div className="pt-5">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                User Role
+              </label>
+              <select
+                name="role"
+                className={`${styles.inputSelect}`}
+                value={formik.values.role}
+                onChange={formik.handleChange}
+              >
+                <option>choose user type</option>
+                <option value="admin">admin</option>
+                <option value="worker">worker</option>
+              </select>
+              {formik.errors.role && formik.touched.role ? (
+                <div className="mt-2 text-sm text-red-400">
+                  {formik.errors.role}
                 </div>
               ) : null}
             </div>
@@ -162,7 +188,7 @@ const Login = () => {
                 className={`group relative ${styles.buttonPrimary} w-full mx-0 mt-10 leading-6`}
                 disabled={isLoading}
               >
-                {isLoading ? <ButtonSpinner /> : "Submit"}
+                {isLoading ? <ButtonSpinner /> : "Create User"}
               </button>
             </div>
           </form>
@@ -172,4 +198,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CreateUser;
