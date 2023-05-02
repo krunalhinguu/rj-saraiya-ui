@@ -16,8 +16,8 @@ import { ReactTransliterate } from "react-transliterate";
 
 // validation
 const formSchema = Yup.object().shape({
-  price: Yup.number().required("price is required"),
-  expense: Yup.number().required("expense type is required"),
+  price: Yup.number().required("Required Field"),
+  expense: Yup.number().required("Required Field"),
 });
 
 // table header
@@ -182,10 +182,8 @@ const LogExpense = () => {
                   </option>
                 ))}
               </select>
-              {formik.errors.expenseType ? (
-                <div className={`${styles.error}`}>
-                  {formik.errors.expenseType}
-                </div>
+              {formik.errors.expense && formik.touched.expense ? (
+                <div className={`${styles.error}`}>{formik.errors.expense}</div>
               ) : null}
             </div>
 
@@ -201,7 +199,7 @@ const LogExpense = () => {
                 className={`${styles.input}`}
                 placeholder="₹ 50, 100, 1000"
               />
-              {formik.errors.price ? (
+              {formik.errors.price && formik.touched.price ? (
                 <div className={`${styles.error}`}>{formik.errors.price}</div>
               ) : null}
             </div>
@@ -275,7 +273,7 @@ const LogExpense = () => {
                 data.map((d, i) => (
                   <tr
                     key={d.id}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
+                    className="bg-white border-b   hover:bg-red-50 "
                   >
                     <th
                       scope="row"
@@ -298,13 +296,13 @@ const LogExpense = () => {
                     </td>
                     <td className="flex items-center px-6 py-4 space-x-3">
                       <button
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        className="font-medium text-blue-600  hover:underline"
                         onClick={() => handleEdit(d)}
                       >
                         Edit
                       </button>
                       <button
-                        className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        className="font-medium text-red-600  hover:underline"
                         onClick={() => handleDelete(d.id)}
                       >
                         Remove
@@ -320,7 +318,7 @@ const LogExpense = () => {
             <button
               disabled={currentPage === 0}
               onClick={handlePrevious}
-              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
             >
               <svg
                 aria-hidden="true"
@@ -340,7 +338,7 @@ const LogExpense = () => {
             <button
               disabled={currentPage === totalPages - 1}
               onClick={handleNext}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
             >
               Next
               <svg

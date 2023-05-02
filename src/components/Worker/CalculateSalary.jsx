@@ -6,6 +6,12 @@ import { useTranslation } from "react-i18next";
 import ButtonSpinner from "../ButtonSpinner";
 import styles from "../../styles/styles";
 import moment from "moment";
+import * as Yup from "yup";
+
+// validation
+const formSchema = Yup.object().shape({
+  worker: Yup.string().required("Required Field"),
+});
 
 const CalculateSalary = () => {
   const { t } = useTranslation();
@@ -61,6 +67,7 @@ const CalculateSalary = () => {
       startDate: "",
       endDate: "",
     },
+    validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
       instance
@@ -106,6 +113,9 @@ const CalculateSalary = () => {
                     </option>
                   ))}
               </select>
+              {formik.errors.worker && formik.touched.worker ? (
+                <div className={`${styles.error}`}>{formik.errors.worker}</div>
+              ) : null}
             </div>
 
             {/* period */}

@@ -8,7 +8,7 @@ const AboutPage = () => {
       <section className="bg-white dark:bg-gray-900">
         <div className="grid max-w-screen-xl px-4 pt-10 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-[#e40414] text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+            <h1 className="max-w-2xl mb-4 text-[#e40414] text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
               Ramanlal J Saraiya
             </h1>
 
@@ -28,7 +28,7 @@ const AboutPage = () => {
       </section>
 
       <section className="bg-gray-50 p-3">
-        <h1 className=" mb-4 p-2 text-black text-2xl font-extrabold leading-none tracking-tight md:text-2xl xl:text-4xl dark:text-white">
+        <h1 className=" mb-4 p-2 text-black text-2xl font-extrabold leading-none tracking-tight md:text-2xl xl:text-4xl ">
           Photo Gallery
         </h1>
         <div className="slider">
@@ -163,11 +163,11 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="bg-white dark:bg-gray-800">
+      <section className="bg-white ">
         <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
                 Work with tools you already use
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -178,7 +178,7 @@ const AboutPage = () => {
 
               <ul
                 role="list"
-                className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+                className="pt-8 space-y-5 border-t border-gray-200 my-7 "
               >
                 <li className="flex space-x-3">
                   <svg
@@ -193,7 +193,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Continuous integration and deployment
                   </span>
                 </li>
@@ -210,7 +210,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Development workflow
                   </span>
                 </li>
@@ -227,7 +227,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Knowledge management
                   </span>
                 </li>
@@ -251,7 +251,7 @@ const AboutPage = () => {
               alt="feature image 2"
             />
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
                 We invest in the world’s potential
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -262,7 +262,7 @@ const AboutPage = () => {
 
               <ul
                 role="list"
-                className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+                className="pt-8 space-y-5 border-t border-gray-200 my-7 "
               >
                 <li className="flex space-x-3">
                   <svg
@@ -277,7 +277,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Dynamic reports and dashboards
                   </span>
                 </li>
@@ -294,7 +294,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Templates for everyone
                   </span>
                 </li>
@@ -311,7 +311,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Development workflow
                   </span>
                 </li>
@@ -328,7 +328,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Limitless business automation
                   </span>
                 </li>
@@ -345,7 +345,7 @@ const AboutPage = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Knowledge management
                   </span>
                 </li>
@@ -369,7 +369,7 @@ const AboutPage = () => {
         ></iframe>
       </section>
 
-      <section className="bg-gray-50 dark:bg-gray-800">
+      <section className="bg-gray-50 ">
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
           <figure className="max-w-screen-md mx-auto">
             <svg
@@ -384,7 +384,7 @@ const AboutPage = () => {
               />
             </svg>
             <blockquote>
-              <p className="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">
+              <p className="text-xl font-medium text-gray-900 md:text-2xl ">
                 "Landwind is just awesome. It contains tons of predesigned
                 components and pages starting from login screen to complex
                 dashboard. Perfect choice for your next SaaS application."
@@ -397,7 +397,7 @@ const AboutPage = () => {
                 alt="profile picture"
               />
               <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                <div className="pr-3 font-medium text-gray-900 dark:text-white">
+                <div className="pr-3 font-medium text-gray-900 ">
                   Ramanlal J Saraiya
                 </div>
                 <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">

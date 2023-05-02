@@ -18,8 +18,7 @@ import { ReactTransliterate } from "react-transliterate";
 
 // validation
 const formSchema = Yup.object().shape({
-  name: Yup.string().required("product type is required"),
-  date: Yup.date().required("date is required"),
+  name: Yup.string().required("Required Field"),
 });
 
 // table header
@@ -153,7 +152,7 @@ const ProductType = () => {
                 lang={lang}
                 enabled={lang === "gu"}
               />
-              {formik.errors.name ? (
+              {formik.errors.name && formik.touched.name ? (
                 <div className={`${styles.error}`}>{formik.errors.name}</div>
               ) : null}
             </div>
@@ -227,7 +226,7 @@ const ProductType = () => {
                 data.map((d, i) => (
                   <tr
                     key={d.id}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
+                    className="bg-white border-b   hover:bg-red-50 "
                   >
                     <th
                       scope="row"
@@ -242,13 +241,13 @@ const ProductType = () => {
                     </td>
                     <td className="flex items-center px-6 py-4 space-x-3">
                       <button
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        className="font-medium text-blue-600  hover:underline"
                         onClick={() => handleEdit(d)}
                       >
                         Edit
                       </button>
                       <button
-                        className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        className="font-medium text-red-600  hover:underline"
                         onClick={() => handleDelete(d.id)}
                       >
                         Remove
@@ -264,7 +263,7 @@ const ProductType = () => {
             <button
               disabled={currentPage === 0}
               onClick={handlePrevious}
-              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
             >
               <svg
                 aria-hidden="true"
@@ -284,7 +283,7 @@ const ProductType = () => {
             <button
               disabled={currentPage === totalPages - 1}
               onClick={handleNext}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
             >
               Next
               <svg

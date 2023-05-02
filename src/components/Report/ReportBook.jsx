@@ -171,7 +171,7 @@ const ReportBook = () => {
                   data.map((d, i) => (
                     <tr
                       key={d.id}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
+                      className="bg-white border-b   hover:bg-red-50 "
                     >
                       <th
                         scope="row"
@@ -186,7 +186,7 @@ const ReportBook = () => {
                   ))}
               </tbody>
               <tfoot>
-                <tr className="font-semibold text-gray-900 dark:text-white">
+                <tr className="font-semibold text-gray-900 ">
                   <td className="px-6 py-3"></td>
                   <td className="px-6 py-3">
                     <NumericFormat

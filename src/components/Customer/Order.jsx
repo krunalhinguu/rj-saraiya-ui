@@ -12,6 +12,18 @@ import ButtonSpinner from "../ButtonSpinner";
 import styles from "../../styles/styles";
 import { useSelector } from "react-redux";
 
+import * as Yup from "yup";
+
+const formSchema = Yup.object().shape({
+  customer: Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    mobileNo: Yup.string()
+      .required("Mobile no is required")
+      .matches(/^[0-9]{10}$/, "Invalid mobile no"),
+  }),
+  paidBy: Yup.string().required("Required field"),
+});
+
 const Order = () => {
   const props = useSelector((state) => state);
   const { user, navigation } = props;
@@ -184,8 +196,13 @@ const Order = () => {
       },
       items: [],
     },
-    // validationSchema: formSchema,
+    validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
+      if (selectedOptions.length === 0) {
+        alert("Choose atleast one product");
+        return;
+      }
+
       values.items = selectedOptions;
 
       setIsLoading(true);
@@ -242,6 +259,11 @@ const Order = () => {
                 lang={lang}
                 enabled={lang === "gu"}
               />
+              {formik.errors.customer && formik.touched.customer ? (
+                <div className={`${styles.error}`}>
+                  {formik.errors.customer.name}
+                </div>
+              ) : null}
             </div>
 
             {/* mobile no */}
@@ -255,6 +277,11 @@ const Order = () => {
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
               />
+              {formik.errors.customer && formik.touched.customer ? (
+                <div className={`${styles.error}`}>
+                  {formik.errors.customer.mobileNo}
+                </div>
+              ) : null}
             </div>
 
             {/* paid by */}
@@ -272,6 +299,9 @@ const Order = () => {
                 <option value="bank">Bank</option>
                 <option value="card">Card</option>
               </select>
+              {formik.errors.paidBy && formik.touched.paidBy ? (
+                <div className={`${styles.error}`}>{formik.errors.paidBy}</div>
+              ) : null}
             </div>
             {/* date */}
             <div>
@@ -484,7 +514,7 @@ const Order = () => {
               {selectedOptions.map((item, i) => (
                 <tr
                   key={item.productId}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
+                  className="bg-white border-b hover:bg-red-50 "
                 >
                   <th
                     scope="row"
@@ -524,7 +554,7 @@ const Order = () => {
                   </td>
                   <td className="flex items-center px-6 py-4 space-x-3">
                     <button
-                      className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                      className="font-medium text-red-600  hover:underline"
                       onClick={() => handleItemDelete(item.productId)}
                     >
                       Remove
@@ -534,7 +564,7 @@ const Order = () => {
               ))}
             </tbody>
             <tfoot>
-              <tr className="font-semibold text-gray-900 dark:text-white">
+              <tr className="font-semibold text-gray-900 ">
                 <th scope="row" className="px-6 py-3 text-base">
                   {t("common.total")}
                 </th>

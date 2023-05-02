@@ -12,7 +12,7 @@ const TableRow = ({ data }) => {
   return (
     <>
       <tr
-        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-50 "
+        className="bg-white border-b   hover:bg-red-50 "
         onClick={toggleExpand}
       >
         <td className="px-6 py-4">{data.invoiceNo}</td>
