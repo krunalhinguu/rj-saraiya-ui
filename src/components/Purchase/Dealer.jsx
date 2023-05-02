@@ -234,102 +234,105 @@ const Dealer = () => {
       {isDataLoading ? (
         <Spinner />
       ) : (
-        <div className="relative overflow-x-auto sm:rounded-lg mt-5">
-          <table className="w-full text-sm text-left text-slate-500 ">
-            <thead className="text-md uppercase bg-red-100 text-slate-500">
-              <tr>
-                {headers &&
-                  headers.length > 0 &&
-                  headers.map((header, i) => (
-                    <th key={i} scope="col" className="px-6 py-3">
-                      {t(header.name)}
-                    </th>
-                  ))}
-              </tr>
-            </thead>
-            <tbody>
-              {data &&
-                data.length > 0 &&
-                data.map((d, i) => (
-                  <tr
-                    key={d.id}
-                    className="bg-white border-b   hover:bg-red-50 "
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+        data &&
+        data.length > 0 && (
+          <div className="relative overflow-x-auto sm:rounded-lg mt-5">
+            <table className="w-full text-sm text-left text-slate-500 ">
+              <thead className="text-md uppercase bg-red-100 text-slate-500">
+                <tr>
+                  {headers &&
+                    headers.length > 0 &&
+                    headers.map((header, i) => (
+                      <th key={i} scope="col" className="px-6 py-3">
+                        {t(header.name)}
+                      </th>
+                    ))}
+                </tr>
+              </thead>
+              <tbody>
+                {data &&
+                  data.length > 0 &&
+                  data.map((d, i) => (
+                    <tr
+                      key={d.id}
+                      className="bg-white border-b   hover:bg-red-50 "
                     >
-                      {d.name}
-                    </th>
-
-                    <td className="px-6 py-4">{d.address}</td>
-                    <td className="px-6 py-4">{`+91-${d.phone}`}</td>
-                    <td className="px-6 py-4">
-                      {moment(d.date).format(DATE_FORMAT)}
-                    </td>
-                    <td className="flex items-center px-6 py-4 space-x-3">
-                      <button
-                        className="font-medium text-blue-600  hover:underline"
-                        onClick={() => handleEdit(d)}
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
-                        Edit
-                      </button>
-                      <button
-                        className="font-medium text-red-600  hover:underline"
-                        onClick={() => handleDelete(d.id)}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                        {d.name}
+                      </th>
 
-          {/* pagination */}
-          <div className="flex justify-end gap-1 m-3">
-            <button
-              disabled={currentPage === 0}
-              onClick={handlePrevious}
-              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+                      <td className="px-6 py-4">{d.address}</td>
+                      <td className="px-6 py-4">{`+91-${d.phone}`}</td>
+                      <td className="px-6 py-4">
+                        {moment(d.date).format(DATE_FORMAT)}
+                      </td>
+                      <td className="flex items-center px-6 py-4 space-x-3">
+                        <button
+                          className="font-medium text-blue-600  hover:underline"
+                          onClick={() => handleEdit(d)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="font-medium text-red-600  hover:underline"
+                          onClick={() => handleDelete(d.id)}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+
+            {/* pagination */}
+            <div className="flex justify-end gap-1 m-3">
+              <button
+                disabled={currentPage === 0}
+                onClick={handlePrevious}
+                className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
               >
-                <path
-                  fillRule="evenodd"
-                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              Previous
-            </button>
-            <button
-              disabled={currentPage === totalPages - 1}
-              onClick={handleNext}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
-            >
-              Next
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5 ml-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                Previous
+              </button>
+              <button
+                disabled={currentPage === totalPages - 1}
+                onClick={handleNext}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700  "
               >
-                <path
-                  fillRule="evenodd"
-                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </button>
+                Next
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5 ml-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        )
       )}
 
       <div>
