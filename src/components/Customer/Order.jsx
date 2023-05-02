@@ -95,7 +95,7 @@ const Order = () => {
 
   const fetchAllProductTypes = async () => {
     instance
-      .get("products/type")
+      .get("products/type/all")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setTypes(data.body);
@@ -176,6 +176,7 @@ const Order = () => {
     initialValues: {
       date: new Date(),
       whatsapp: false,
+      paidBy: "",
       generatedBy: user.data.name,
       customer: {
         name: "",
@@ -199,10 +200,13 @@ const Order = () => {
             setSubTypes([]);
             setProducts([]);
             setSelectedOptions([]);
+
+            alert("Order placed successfully");
           }
           setIsLoading(false);
         })
         .catch((error) => {
+          alert("Order Failed");
           setIsLoading(false);
           console.error(error);
         });
@@ -251,6 +255,23 @@ const Order = () => {
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
               />
+            </div>
+
+            {/* paid by */}
+            <div>
+              <span className={`${styles.label}`}>{t("common.paidBy")}</span>
+              <select
+                name="paidBy"
+                className={`${styles.inputSelect}`}
+                value={formik.values.paidBy}
+                onChange={formik.handleChange}
+              >
+                <option>choose payment type</option>
+                <option value="cash">Cash</option>
+                <option value="upi">UPI</option>
+                <option value="bank">Bank</option>
+                <option value="card">Card</option>
+              </select>
             </div>
             {/* date */}
             <div>
@@ -374,7 +395,7 @@ const Order = () => {
                             >
                               {option.productName}
                               <span className="mx-1 text-xs text-gray-400">
-                                {`(₹${option.price})`}
+                                {`(₹${option.price}/${option.typeOfQuantity})`}
                               </span>
                             </label>
                           </div>
@@ -411,7 +432,7 @@ const Order = () => {
                   >
                     {item.productName}
                     <span className="mx-1 text-xs text-gray-400">
-                      {`(₹${item.price})`}
+                      {`(₹${item.price}/${item.typeOfQuantity})`}
                     </span>
                   </label>
                 </div>

@@ -89,6 +89,8 @@
         "stockRoom": "માલની જગ્યા",
         "totalStock": "કુલ માલ",
         "size": "માપ",
-        "frequentlyUsed": "વધારે વપરાતી વસ્તુ?"
+        "frequentlyUsed": "વધારે વપરાતી વસ્તુ?",
+        "totalHours": "કલાક",
+        "expenseTotal": "કુલ ખર્ચો"
     }
 }

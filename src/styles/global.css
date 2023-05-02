@@ -57,6 +57,10 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 /* autoplay images */
 .slider {
   /* height: 300px; */

@@ -63,7 +63,7 @@ const ExpenseReport = () => {
 
   const fetchAllDealers = async () => {
     instance
-      .get("expense/type")
+      .get("expense/type/all")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setTypes(data.body);

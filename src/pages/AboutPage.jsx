@@ -31,74 +31,74 @@ const AboutPage = () => {
         <h1 className=" mb-4 p-2 text-black text-2xl font-extrabold leading-none tracking-tight md:text-2xl xl:text-4xl dark:text-white">
           Photo Gallery
         </h1>
-        <div class="slider">
-          <div class="slide-track">
-            <div class="slide">
-              <div class="relative">
+        <div className="slider">
+          <div className="slide-track">
+            <div className="slide">
+              <div className="relative">
                 <img src="./logo512.png" alt="hero image" />
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                  <h1 class="text-3xl text-white text-opacity-80 font-bold">
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                  <h1 className="text-3xl text-white text-opacity-80 font-bold">
                     Product Name
                   </h1>
                 </div>
               </div>
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
             {/* <!-- same 9 slides doubled (duplicate) --> */}
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
-            <div class="slide">
+            <div className="slide">
               <img src="./logo512.png" alt="hero image" />
             </div>
           </div>
@@ -106,56 +106,58 @@ const AboutPage = () => {
       </section>
 
       <section>
-        <div class="flex flex-col bg-white m-auto p-5">
-          <h1 class="mx-5 font-bold text-4xl text-gray-800">Our Products</h1>
-          <div class="grid grid-cols-8 gap-4 m-5">
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+        <div className="flex flex-col bg-white m-auto p-5">
+          <h1 className="mx-5 font-bold text-4xl text-gray-800">
+            Our Products
+          </h1>
+          <div className="grid grid-cols-8 gap-4 m-5">
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
-            <div class="inline-block px-3">
-              <div class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
+            <div className="inline-block px-3">
+              <div className="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"></div>
             </div>
           </div>
         </div>
@@ -186,9 +188,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -203,9 +205,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -220,9 +222,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -270,9 +272,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -287,9 +289,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -304,9 +306,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -321,9 +323,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
@@ -338,9 +340,9 @@ const AboutPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">

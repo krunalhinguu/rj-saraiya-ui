@@ -33,6 +33,10 @@ const headers = [
     name: "common.generatedBy",
   },
   {
+    key: "paidBy",
+    name: "common.paidBy",
+  },
+  {
     key: "totalAmount",
     name: "common.totalAmount",
   },
@@ -174,6 +178,7 @@ const OrderBook = () => {
                         {d.customer.mobileNo && `+91-${d.customer.mobileNo}`}
                       </td>
                       <td className="px-6 py-4">{d.generatedBy}</td>
+                      <td className="px-6 py-4">{d.paidBy}</td>
                       <td className="px-6 py-4">
                         <NumericFormat
                           value={d.totalAmount}
@@ -190,6 +195,7 @@ const OrderBook = () => {
                   <th scope="row" className="px-6 py-3 text-base">
                     {t("common.total")}
                   </th>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>

@@ -60,7 +60,7 @@ const DebtReport = () => {
 
   const fetchAllWorkers = async () => {
     instance
-      .get("worker")
+      .get("worker/all")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setWorkers(data.body);

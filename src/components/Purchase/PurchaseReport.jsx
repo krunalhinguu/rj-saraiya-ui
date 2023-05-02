@@ -83,7 +83,7 @@ const PurchaseReport = () => {
 
   const fetchAllDealers = async () => {
     instance
-      .get("purchase/dealer")
+      .get("purchase/dealer/all")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setDealers(data.body);

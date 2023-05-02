@@ -87,20 +87,35 @@ const Product = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     fetchAll();
     fetchAllProductTypes();
   }, []);
 
+  useEffect(() => {
+    fetchAll();
+  }, [currentPage]);
+
   // handlers
+  const handlePrevious = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
   const fetchAll = async () => {
     setIsDataLoading(true);
     await instance
-      .get("products")
+      .get(`products?page=${currentPage}`)
       .then(({ data }) => {
         if (data.responseCode === "OK") {
-          setData(data.body);
+          setTotalPages(data.body.totalPages);
+          setData(data.body.content);
         }
         setIsDataLoading(false);
       })
@@ -112,7 +127,7 @@ const Product = () => {
 
   const fetchAllProductTypes = async () => {
     instance
-      .get("products/type")
+      .get("products/type/all")
       .then(({ data }) => {
         if (data.responseCode === "OK") {
           setTypes(data.body);
@@ -510,6 +525,50 @@ const Product = () => {
                 ))}
             </tbody>
           </table>
+
+          {/* pagination */}
+          <div className="flex justify-end gap-1 m-3">
+            <button
+              disabled={currentPage === 0}
+              onClick={handlePrevious}
+              className="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              Previous
+            </button>
+            <button
+              disabled={currentPage === totalPages - 1}
+              onClick={handleNext}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              Next
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 ml-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 

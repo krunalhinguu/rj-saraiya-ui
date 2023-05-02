@@ -44,11 +44,13 @@ const Login = () => {
 
             dispatch(login(user));
             navigate("/", { replace: true });
+
+            alert("Welcome to Ramanlal J Saraiya");
           }
           setIsLoading(false);
         })
         .catch((error) => {
-          alert("Login Failed");
+          alert("Please Enter Valid Credentials");
           setIsLoading(false);
         });
     },
@@ -82,7 +84,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-
       {/* right */}
       <div className="flex flex-col mt-[20vh] mx-auto py-12 sm:px-6 lg:px-8mx-auto sm:mx-auto sm:w-full sm:max-w-md">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">

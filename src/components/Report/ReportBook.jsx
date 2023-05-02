@@ -25,9 +25,13 @@ const headers = [
     name: "common.mandirMa",
   },
   {
-    key: "totalAmount",
-    name: "common.totalAmount",
+    key: "expenceTotal",
+    name: "common.expenseTotal",
   },
+  // {
+  //   key: "totalAmount",
+  //   name: "common.totalAmount",
+  // },
 ];
 
 const ReportBook = () => {
@@ -40,7 +44,7 @@ const ReportBook = () => {
     const totalExpense =
       data &&
       data.length > 0 &&
-      data.reduce((prev, d) => d.totalAmount + prev, 0);
+      data.reduce((prev, d) => d.expenseTotal + prev, 0);
 
     return totalExpense || 0;
   };
@@ -177,7 +181,7 @@ const ReportBook = () => {
                       </th>
                       <td className="px-6 py-4">{d.gallaAmount}</td>
                       <td className="px-6 py-4">{d.mandirAmount}</td>
-                      <td className="px-6 py-4">{d.totalAmount}</td>
+                      <td className="px-6 py-4">{d.expenseTotal}</td>
                     </tr>
                   ))}
               </tbody>

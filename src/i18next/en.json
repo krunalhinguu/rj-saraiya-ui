@@ -4,7 +4,7 @@
         "customer": "Customer",
         "dailyReport": "Daily Report",
         "worker": "Worker",
-        "expense": "expense",
+        "expense": "Expense",
         "purchase": "Purchase",
         "inventory": "Inventory"
     },
@@ -89,6 +89,9 @@
         "stockRoom": "Stock Room",
         "totalStock": "Total Stock",
         "size": "Size",
-        "frequentlyUsed": "Frequently Used Product?"
+        "frequentlyUsed": "Frequently Used Product?",
+        "totalHours": "Total Hours",
+        "expenseTotal": "Expense Total",
+        "paidBy": "Paid By"
     }
 }
