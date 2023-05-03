@@ -17,11 +17,15 @@ import UserPage from "../pages/UserPage";
 
 export const router = createBrowserRouter([
   {
+    path: "",
+    element: <AboutPage />,
+  },
+  {
     path: "login",
     element: <LoginPage />,
   },
   {
-    path: "/",
+    path: "customer",
     element: (
       <PrivateRoute>
         <CustomerPage />
@@ -29,7 +33,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/report",
+    path: "report",
     element: (
       <PrivateRoute>
         <ReportPage />
@@ -37,7 +41,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/worker",
+    path: "worker",
     element: (
       <PrivateRoute>
         <WorkerPage />
@@ -45,7 +49,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/expense",
+    path: "expense",
     element: (
       <PrivateRoute>
         <ExpensePage />
@@ -53,7 +57,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/purchase",
+    path: "purchase",
     element: (
       <PrivateRoute>
         <AdminRoute>
@@ -63,7 +67,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/inventory",
+    path: "inventory",
     element: (
       <PrivateRoute>
         <AdminRoute>
@@ -73,7 +77,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/user",
+    path: "user",
     element: (
       <PrivateRoute>
         <AdminRoute>
@@ -83,11 +87,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/about",
-    element: <AboutPage />,
-  },
-  {
-    path: "/unauthorised",
+    path: "unauthorised",
     element: <Unauthorised />,
   },
   {

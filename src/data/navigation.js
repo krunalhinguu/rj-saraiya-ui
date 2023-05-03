@@ -2,7 +2,7 @@ export const nav = [
   {
     key: "customer",
     name: "nav.customer",
-    url: "/",
+    url: "/customer",
     isAdmin: false,
   },
   {

@@ -40,7 +40,7 @@ const Login = () => {
             const user = data.body;
 
             dispatch(login(user));
-            navigate("/", { replace: true });
+            navigate("/customer", { replace: true });
 
             alert("Welcome to Ramanlal J Saraiya");
           }
