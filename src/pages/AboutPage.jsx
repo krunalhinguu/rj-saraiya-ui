@@ -10,7 +10,7 @@ const AboutPage = () => {
           <img
             class="rounded-full border-4 border-solid border-red-300 shadow-sm"
             src="https://randomuser.me/api/portraits/men/18.jpg"
-            alt="user image"
+            alt="user"
           />
           <p className="mt-2 text-center font-bold">Ramanlal J Raval</p>
           <p className="text-center font-bold text-sm text-slate-500">
@@ -44,7 +44,7 @@ const AboutPage = () => {
           <img
             class="rounded-full border-4 border-solid border-red-300 shadow-sm"
             src="https://randomuser.me/api/portraits/men/71.jpg"
-            alt="user image"
+            alt="user "
           />
           <p className="mt-2 text-center font-bold">Ramanlal J Raval</p>
           <p className="text-center font-bold text-sm text-slate-500">
@@ -60,65 +60,65 @@ const AboutPage = () => {
           <div className="slider">
             <div className="slide-track">
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               {/* <!-- same 9 slides doubled (duplicate) --> */}
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="image" />
+                <img src="./images/2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="image" />
+                <img src="./images/3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="image" />
+                <img src="./images/1.jpg" alt="product-iamge" />
               </div>
             </div>
           </div>
@@ -132,42 +132,42 @@ const AboutPage = () => {
           <div className="grid mx-auto gap-y-10 gap-x-5 m-2 lg:grid-cols-5 md:grid-cols-3 grid-cols-1">
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/haldi.jpg" alt="image" />
+                <img src="./images/haldi.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/perfume.jpg" alt="image" />
+                <img src="./images/perfume.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/meena.jpg" alt="image" />
+                <img src="./images/meena.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/aggarbatti.jpg" alt="image" />
+                <img src="./images/aggarbatti.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/haldi.jpg" alt="image" />
+                <img src="./images/haldi.jpg" alt="productct" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/perfume.jpg" alt="image" />
+                <img src="./images/perfume.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/meena.jpg" alt="image" />
+                <img src="./images/meena.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
               <div className="max-w-xs overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <img src="./images/aggarbatti.jpg" alt="image" />
+                <img src="./images/aggarbatti.jpg" alt="product" />
               </div>
             </div>
             <div className="inline-block px-3">
@@ -206,7 +206,7 @@ const AboutPage = () => {
             <img
               className="w-full mb-4 rounded-lg lg:mb-0 lg:flex"
               src="./images/4.jpg"
-              alt="dashboard feature image"
+              alt="dashboard feature product"
             />
           </div>
 
@@ -214,7 +214,7 @@ const AboutPage = () => {
             <img
               className="w-full mb-4 rounded-lg lg:mb-0 lg:flex"
               src="./images/5.jpg"
-              alt="feature image 2"
+              alt="feature product 2"
             />
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
@@ -242,6 +242,7 @@ const AboutPage = () => {
       {/* map */}
       <section className="bg-white">
         <iframe
+          title="Ramanlal J Saraiya"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9807916689206!2d72.58162957703065!3d23.02447747917256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85fe4f4a6389%3A0x52524dfae0953faf!2sRamanlal%20J%20saraiya!5e0!3m2!1sen!2sin!4v1682932290695!5m2!1sen!2sin"
           width="100%"
           height="450"
