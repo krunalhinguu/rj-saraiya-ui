@@ -108,14 +108,19 @@ button:disabled {
   width: 500px;
   /* height: 250px; */
   margin: 20px;
-  border: 1px solid black;
   display: grid;
   place-items: center;
   transition: 1s;
   cursor: pointer;
 }
 .slide:hover {
-  transform: scale(0.8);
+  transform: scale(0.9);
+}
+
+img {
+  aspect-ratio: 3/2;
+  /* mix-blend-mode: color-burn; */
+  object-fit: contain;
 }
 
 @keyframes scroll {
@@ -129,15 +134,11 @@ button:disabled {
 
 @media screen and (max-width: 768px) {
   .slide-track {
-    width: calc(80px * 20);
-  }
-
-  .slide-track2 {
-    width: calc(80px * 15);
+    width: calc(250px * 20);
   }
 
   .slide {
-    width: 80px;
+    width: 250px;
   }
 
   @keyframes scroll {
@@ -145,7 +146,7 @@ button:disabled {
       transform: translateX(0px);
     }
     100% {
-      transform: translateX(calc(-80px * 10));
+      transform: translateX(calc(-250px * 10));
     }
   }
 }
