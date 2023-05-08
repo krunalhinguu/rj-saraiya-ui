@@ -54,6 +54,17 @@ const ReportBook = () => {
     return totalExpense || 0;
   };
 
+  const totalExpense = (data) => {
+    let amount = 0;
+
+    if (data.gallaAmount) amount += data.gallaAmount;
+    if (data.mandirAmount) amount += data.mandirAmount;
+    if (data.onlineAmount) amount += data.onlineAmount;
+    if (data.expenseTotal) amount -= data.expenseTotal;
+
+    return amount;
+  };
+
   const getGallAmount = () => {
     const gallaAmount =
       data &&
@@ -207,12 +218,7 @@ const ReportBook = () => {
                       <td className="px-6 py-4">{d.mandirAmount}</td>
                       <td className="px-6 py-4">{d.onlineAmount}</td>
                       <td className="px-6 py-4">{d.expenseTotal}</td>
-                      <td className="px-6 py-4">
-                        {d.gallaAmount +
-                          d.mandirAmount +
-                          d.onlineAmount -
-                          d.expenseTotal}
-                      </td>
+                      <td className="px-6 py-4">{totalExpense(d)}</td>
                     </tr>
                   ))}
               </tbody>
