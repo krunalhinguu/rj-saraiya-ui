@@ -486,7 +486,7 @@ const Product = () => {
                         />
                       </td>
                       <td className="px-6 py-4">
-                        {shopStock && `${d.shopStock} ${d.typeOfQuantity}`}
+                        {d.shopStock && `${d.shopStock} ${d.typeOfQuantity}`}
                       </td>
                       <td className="px-6 py-4">
                         <NumericFormat
@@ -497,7 +497,8 @@ const Product = () => {
                         />
                       </td>
                       <td className="px-6 py-4">
-                        {godownStock && `${d.godownStock} ${d.typeOfQuantity}`}
+                        {d.godownStock &&
+                          `${d.godownStock} ${d.typeOfQuantity}`}
                       </td>
                       <td className="px-6 py-4">
                         <NumericFormat
