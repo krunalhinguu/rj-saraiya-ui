@@ -15,6 +15,7 @@ import Spinner from "../Spinner";
 import styles from "../../styles/styles";
 import { useSelector } from "react-redux";
 import { ReactTransliterate } from "react-transliterate";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -114,7 +115,7 @@ const ProductType = () => {
     initialValues: {
       name: "",
       details: "",
-      date: new Date(),
+      date: date,
     },
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
@@ -168,22 +169,6 @@ const ProductType = () => {
                 enabled={lang === "gu"}
               />
             </div>
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                type="text"
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-              />
-            </div>
-            {formik.errors.date ? (
-              <div className={`${styles.error}`}>{formik.errors.date}</div>
-            ) : null}
           </div>
           {/* buttons */}
           <div className="mt-6 mb-2">

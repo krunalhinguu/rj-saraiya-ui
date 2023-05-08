@@ -13,9 +13,9 @@ const styles = {
   inputSelect:
     "block bg-white w-full px-3 py-1 border border-gray-300 text-slate-900 text-sm rounded-md shadow-sm placeholder-gray-400 capitalize focus:outline-none focus:ring-[#e40414] focus:border-[#e40414] ",
   buttonPrimary:
-    "rounded-md bg-[#e40414] min-w-[100px] mx-1 px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-[#e93643] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e93643]",
+    "rounded-md bg-[#e40414] min-w-[100px] mx-1 px-3.5 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-[#e93643] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e93643]",
   buttonSecondary:
-    "rounded-md bg-slate-500 min-w-[100px] mx-1 px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600",
+    "rounded-md bg-slate-500 min-w-[100px] mx-1 px-3.5 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600",
   label: "text-base text-sm font-semibold leading-7 text-gray-500",
   error: "mt-1 text-sm text-red-400",
   cart_button_text: "text-[#fff] text-[16px] font-[600]",

@@ -16,14 +16,13 @@ import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
 
 import styles from "../../styles/styles";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
   productType: Yup.number().required("Required Field"),
   productSubType: Yup.number().required("Required Field"),
   productName: Yup.string().required("Required Field"),
-  stockRoom: Yup.string().required("Required Field"),
-  totalStock: Yup.number().required("Required Field"),
   price: Yup.number().required("Required Field"),
 });
 
@@ -42,20 +41,24 @@ const headers = [
     name: "common.productSubType",
   },
   {
-    key: "stockRoom",
-    name: "common.stockRoom",
-  },
-  {
     key: "price",
     name: "common.amount",
   },
   {
-    key: "totalStock",
-    name: "common.totalStock",
+    key: "shopStock",
+    name: "common.shopStock",
   },
   {
-    key: "totalValue",
-    name: "common.totalAmount",
+    key: "shopAmount",
+    name: "common.shopValue",
+  },
+  {
+    key: "godownStock",
+    name: "common.godownStock",
+  },
+  {
+    key: "shopAmount",
+    name: "common.godownValue",
   },
   {
     key: "size",
@@ -109,6 +112,14 @@ const Product = () => {
   const handleNext = () => {
     setCurrentPage((prev) => prev + 1);
   };
+
+  const totalShopStockValue =
+    data && data.length > 0 && data.reduce((prev, d) => d.shopValue + prev, 0);
+
+  const totalGodownStockValue =
+    data &&
+    data.length > 0 &&
+    data.reduce((prev, d) => d.godownValue + prev, 0);
 
   const fetchAll = async () => {
     setIsDataLoading(true);
@@ -172,10 +183,10 @@ const Product = () => {
     formik.setFieldValue("productName", d.productName);
     formik.setFieldValue("productType", d.productTypeId);
     formik.setFieldValue("productSubType", d.productSubTypeId);
-    formik.setFieldValue("stockRoom", d.stockRoom);
     formik.setFieldValue("price", d.price);
-    formik.setFieldValue("totalStock", d.totalStock);
     formik.setFieldValue("size", d.size);
+    formik.setFieldValue("shopStock", d.shopStock);
+    formik.setFieldValue("godownStock", d.godownStock);
     formik.setFieldValue("typeOfQuantity", d.typeOfQuantity);
     formik.setFieldValue("details", d.details);
     formik.setFieldValue("pinned", d.pinned);
@@ -192,13 +203,13 @@ const Product = () => {
       productName: "",
       productType: "",
       productSubType: "",
-      stockRoom: "",
       price: "",
-      totalStock: "",
+      shopStock: "",
+      godownStock: "",
       size: "",
       typeOfQuantity: "pcs",
       details: "",
-      date: new Date(),
+      date: date,
       pinned: false,
     },
     validationSchema: formSchema,
@@ -298,27 +309,6 @@ const Product = () => {
               ) : null}
             </div>
 
-            {/* stock room */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.stockRoom")}</span>
-              <select
-                id="stockRoom"
-                className={`${styles.inputSelect}`}
-                value={formik.values.stockRoom}
-                onChange={formik.handleChange}
-              >
-                <option>Choose Stock Room</option>
-                <option value="home">{t("common.home")}</option>
-                <option value="shop">{t("common.shop")}</option>
-                <option value="warehouse">{t("common.warehouse")}</option>
-              </select>
-              {formik.errors.stockRoom && formik.touched.stockRoom ? (
-                <div className={`${styles.error}`}>
-                  {formik.errors.stockRoom}
-                </div>
-              ) : null}
-            </div>
-
             {/* price */}
             <div>
               <span className={`${styles.label}`}>{t("common.amount")}</span>
@@ -336,41 +326,52 @@ const Product = () => {
               ) : null}
             </div>
 
-            {/* total stock */}
+            {/* shop stock */}
+            <div>
+              <span className={`${styles.label}`}>{t("common.shopStock")}</span>
+              <input
+                type="number"
+                name="shopStock"
+                value={formik.values.shopStock}
+                onChange={formik.handleChange}
+                onFocus={(e) => e.target.select()}
+                className={`${styles.input}`}
+                placeholder="₹ 100, 200, 300"
+              />
+            </div>
+
+            {/* godown stock */}
+            <div>
+              <span className={`${styles.label}`}>
+                {t("common.godownStock")}
+              </span>
+              <input
+                type="number"
+                name="godownStock"
+                value={formik.values.godownStock}
+                onChange={formik.handleChange}
+                onFocus={(e) => e.target.select()}
+                className={`${styles.input}`}
+                placeholder="₹ 100, 200, 300"
+              />
+            </div>
+
+            {/* type of stock */}
             <div>
               <span className={`${styles.label}`}>
                 {t("common.totalStock")}
               </span>
-              <div className="relative rounded-md shadow-sm">
-                <input
-                  type="number"
-                  name="totalStock"
-                  value={formik.values.totalStock}
-                  onChange={formik.handleChange}
-                  className={`${styles.input} pr-20`}
-                  placeholder="1 kg, 100 pcs, 300 items"
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center">
-                  <label htmlFor="currency" className="sr-only">
-                    Currency
-                  </label>
-                  <select
-                    name="typeOfQuantity"
-                    className={`${styles.inputSelect} border-0 border-transparent bg-transparent `}
-                    value={formik.values.typeOfQuantity}
-                    onChange={formik.handleChange}
-                  >
-                    <option>choose</option>
-                    <option value="piece">{t("common.piece")}</option>
-                    <option value="kg">{t("common.kg")}</option>
-                  </select>
-                </div>
-              </div>
-              {formik.errors.totalStock && formik.touched.totalStock ? (
-                <div className={`${styles.error}`}>
-                  {formik.errors.totalStock}
-                </div>
-              ) : null}
+
+              <select
+                name="typeOfQuantity"
+                className={`${styles.inputSelect}`}
+                value={formik.values.typeOfQuantity}
+                onChange={formik.handleChange}
+              >
+                <option>choose quantity</option>
+                <option value="piece">{t("common.piece")}</option>
+                <option value="kg">{t("common.kg")}</option>
+              </select>
             </div>
 
             {/* size */}
@@ -399,23 +400,6 @@ const Product = () => {
                 enabled={lang === "gu"}
               />
             </div>
-
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                type="text"
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-              />
-            </div>
-            {formik.errors.date ? (
-              <div className={`${styles.error}`}>{formik.errors.date}</div>
-            ) : null}
           </div>
 
           {/* whatsapp  */}
@@ -493,7 +477,6 @@ const Product = () => {
 
                       <td className="px-6 py-4">{d.productType}</td>
                       <td className="px-6 py-4">{d.productSubType}</td>
-                      <td className="px-6 py-4">{d.stockRoom}</td>
                       <td className="px-6 py-4">
                         <NumericFormat
                           value={d.price}
@@ -503,11 +486,22 @@ const Product = () => {
                         />
                       </td>
                       <td className="px-6 py-4">
-                        {`${d.totalStock} ${d.typeOfQuantity}`}
+                        {`${d.shopStock} ${d.typeOfQuantity}`}
                       </td>
                       <td className="px-6 py-4">
                         <NumericFormat
-                          value={d.totalValue}
+                          value={d.shopValue}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"₹"}
+                        />
+                      </td>
+                      <td className="px-6 py-4">
+                        {`${d.godownStock} ${d.typeOfQuantity}`}
+                      </td>
+                      <td className="px-6 py-4">
+                        <NumericFormat
+                          value={d.godownValue}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={"₹"}
@@ -536,6 +530,35 @@ const Product = () => {
                     </tr>
                   ))}
               </tbody>
+              <tfoot>
+                <tr className="font-semibold text-gray-900 ">
+                  <th scope="row" className="px-6 py-3 text-base">
+                    {t("common.total")}
+                  </th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td className="px-6 py-3"></td>
+                  <td className="px-6 py-3">
+                    <NumericFormat
+                      value={totalShopStockValue}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"₹"}
+                    />
+                  </td>
+                  <td className="px-6 py-3"></td>
+                  <td className="px-6 py-3">
+                    <NumericFormat
+                      value={totalGodownStockValue}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"₹"}
+                    />
+                  </td>
+                  <td className="px-6 py-3"></td>
+                </tr>
+              </tfoot>
             </table>
 
             {/* pagination */}

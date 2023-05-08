@@ -3,11 +3,11 @@
     "nav": {
         "customer": "Customer",
         "dailyReport": "Daily Report",
-        "worker": "Worker",
+        "worker": "Employee",
         "expense": "Expense",
         "purchase": "Purchase",
         "inventory": "Inventory",
-        "createUser": "Create User"
+        "manage": "Manage"
     },
     "tabs": {
         "createOrder": "Create Order",
@@ -28,7 +28,9 @@
         "addGoodsPurchase": "Add Goods Purchase",
         "addProductType": "Add Product Type",
         "addProductSubType": "Add Product Sub Type",
-        "addProduct": "Add Product"
+        "addProduct": "Add Product",
+        "createUser": "Create User",
+        "manageUser": "Manage User"
     },
     "common": {
         "login": "Login",
@@ -93,6 +95,14 @@
         "frequentlyUsed": "Frequently Used Product?",
         "totalHours": "Total Hours",
         "expenseTotal": "Expense Total",
-        "paidBy": "Paid By"
+        "paidBy": "Paid By",
+        "online": "Online",
+        "totalIncome": "Total Income",
+        "username": "Username",
+        "password": "Password",
+        "shopStock": "Shop Stock",
+        "godownStock": "Vakhar Stock",
+        "shopValue": "Shop Value",
+        "godownValue": "Vakhar Value"
     }
 }

@@ -9,6 +9,7 @@ import moment from "moment";
 import { DATE_FORMAT } from "../../data/const";
 import { instance } from "../../server";
 import { useTranslation } from "react-i18next";
+import { date, localDate } from "../../utils/common";
 
 // table header
 const headers = [
@@ -25,13 +26,17 @@ const headers = [
     name: "common.mandirMa",
   },
   {
+    key: "online",
+    name: "common.online",
+  },
+  {
     key: "expenceTotal",
     name: "common.expenseTotal",
   },
-  // {
-  //   key: "totalAmount",
-  //   name: "common.totalAmount",
-  // },
+  {
+    key: "totalIncome",
+    name: "common.totalIncome",
+  },
 ];
 
 const ReportBook = () => {
@@ -67,11 +72,26 @@ const ReportBook = () => {
     return mandirAmount || 0;
   };
 
+  const getOnlineAmount = () => {
+    const mandirAmount =
+      data &&
+      data.length > 0 &&
+      data.reduce((prev, d) => d.onlineAmount + prev, 0);
+
+    return mandirAmount || 0;
+  };
+
+  const getTotalIncome = () => {
+    return (
+      getGallAmount() + getMandirAmount() + getOnlineAmount() - getTotalAmount()
+    );
+  };
+
   // formik
   const formik = useFormik({
     initialValues: {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: date,
+      endDate: date,
     },
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
@@ -109,7 +129,9 @@ const ReportBook = () => {
                 className={`${styles.input}`}
                 selected={formik.values.startDate}
                 onFocus={(e) => e.target.select()}
-                onChange={(date) => formik.setFieldValue("startDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("startDate", localDate(date))
+                }
               />
             </div>
 
@@ -124,7 +146,9 @@ const ReportBook = () => {
                 dateFormat="dd/MM/yyyy"
                 className={`${styles.input}`}
                 selected={formik.values.endDate}
-                onChange={(date) => formik.setFieldValue("endDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("endDate", localDate(date))
+                }
                 onFocus={(e) => e.target.select()}
               />
             </div>
@@ -181,7 +205,14 @@ const ReportBook = () => {
                       </th>
                       <td className="px-6 py-4">{d.gallaAmount}</td>
                       <td className="px-6 py-4">{d.mandirAmount}</td>
+                      <td className="px-6 py-4">{d.onlineAmount}</td>
                       <td className="px-6 py-4">{d.expenseTotal}</td>
+                      <td className="px-6 py-4">
+                        {d.gallaAmount +
+                          d.mandirAmount +
+                          d.onlineAmount -
+                          d.expenseTotal}
+                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -206,7 +237,23 @@ const ReportBook = () => {
                   </td>
                   <td className="px-6 py-3">
                     <NumericFormat
+                      value={getOnlineAmount()}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"₹"}
+                    />
+                  </td>
+                  <td className="px-6 py-3">
+                    <NumericFormat
                       value={getTotalAmount()}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"₹"}
+                    />
+                  </td>
+                  <td className="px-6 py-3">
+                    <NumericFormat
+                      value={getTotalIncome()}
                       displayType={"text"}
                       thousandSeparator={true}
                       prefix={"₹"}

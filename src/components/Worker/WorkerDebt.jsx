@@ -10,6 +10,9 @@ import { DATE_FORMAT } from "../../data/const";
 import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { ReactTransliterate } from "react-transliterate";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -28,6 +31,10 @@ const headers = [
     name: "common.amount",
   },
   {
+    key: "details",
+    name: "common.details",
+  },
+  {
     key: "date",
     name: "common.date",
   },
@@ -38,6 +45,10 @@ const headers = [
 ];
 
 const WorkerDebt = () => {
+  const props = useSelector((state) => state);
+  const { navigation } = props;
+  const { lang } = navigation;
+
   const { t } = useTranslation();
   const [id, setId] = useState();
   const [data, setData] = useState([]);
@@ -111,6 +122,7 @@ const WorkerDebt = () => {
     formik.setFieldValue("id", d.id);
     formik.setFieldValue("worker", d.workerId);
     formik.setFieldValue("amount", d.price);
+    formik.setFieldValue("details", d.details);
   };
 
   const handleDelete = (id) => {
@@ -123,7 +135,8 @@ const WorkerDebt = () => {
     initialValues: {
       worker: "",
       amount: "",
-      date: new Date(),
+      details: "",
+      date: date,
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
@@ -151,7 +164,7 @@ const WorkerDebt = () => {
         {/* form */}
         <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-            {/* product type */}
+            {/* worker name */}
             <div>
               <span className={`${styles.label}`}>
                 {t("common.workerName")}
@@ -190,17 +203,18 @@ const WorkerDebt = () => {
               ) : null}
             </div>
 
-            {/* date */}
+            {/* details */}
             <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                type="text"
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
+              <span className={`${styles.label}`}>{t("common.details")}</span>
+              <ReactTransliterate
+                value={formik.values.details}
+                onChangeText={(text) => {
+                  formik.setFieldValue("details", text);
+                }}
                 className={`${styles.input}`}
+                onFocus={(e) => e.target.select()}
+                lang={lang}
+                enabled={lang === "gu"}
               />
             </div>
           </div>
@@ -257,6 +271,7 @@ const WorkerDebt = () => {
                       </th>
 
                       <td className="px-6 py-4">{d.amount}</td>
+                      <td className="px-6 py-4">{d.details}</td>
                       <td className="px-6 py-4">
                         {moment(d.date).format(DATE_FORMAT)}
                       </td>

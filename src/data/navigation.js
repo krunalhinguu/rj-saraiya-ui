@@ -37,7 +37,7 @@ export const nav = [
   },
   {
     key: "user",
-    name: "nav.createUser",
+    name: "nav.manage",
     url: "/user",
     isAdmin: true,
   },

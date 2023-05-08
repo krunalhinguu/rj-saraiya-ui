@@ -56,7 +56,9 @@ const AboutPage = () => {
       {/* photo gallery */}
       <section className="bg-white">
         <div className="flex flex-col m-auto p-5">
-          <h1 className="m-5 font-bold text-4xl text-gray-600">Our Products</h1>
+          <h1 className="m-5 font-bold text-4xl text-gray-600">
+            Photo Gallery
+          </h1>
           <div className="slider">
             <div className="slide-track">
               <div className="slide">

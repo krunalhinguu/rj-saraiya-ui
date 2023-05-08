@@ -10,6 +10,7 @@ import moment from "moment";
 import ReactDatePicker from "react-datepicker";
 import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
+import { date, localDate } from "../../utils/common";
 
 // table header
 const headers = [
@@ -99,8 +100,8 @@ const DebtReport = () => {
   // formik
   const formik = useFormik({
     initialValues: {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: date,
+      endDate: date,
     },
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
@@ -159,7 +160,9 @@ const DebtReport = () => {
                 className={`${styles.input}`}
                 selected={formik.values.startDate}
                 onFocus={(e) => e.target.select()}
-                onChange={(date) => formik.setFieldValue("startDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("startDate", localDate(date))
+                }
               />
             </div>
 
@@ -175,7 +178,9 @@ const DebtReport = () => {
                 className={`${styles.input}`}
                 minDate={formik.values.startDate}
                 selected={formik.values.endDate}
-                onChange={(date) => formik.setFieldValue("endDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("endDate", localDate(date))
+                }
                 onFocus={(e) => e.target.select()}
               />
             </div>

@@ -13,6 +13,7 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { ReactTransliterate } from "react-transliterate";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -106,7 +107,7 @@ const ExpenseType = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      date: new Date(),
+      date: date,
     },
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
@@ -147,21 +148,6 @@ const ExpenseType = () => {
               {formik.errors.name && formik.touched.name ? (
                 <div className={`${styles.error}`}>{formik.errors.name}</div>
               ) : null}
-            </div>
-
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                type="text"
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-                placeholder="Enter Details About Expense"
-              />
             </div>
           </div>
           {/* buttons */}

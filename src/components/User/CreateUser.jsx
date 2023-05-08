@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import styles from "../styles/styles";
-import { instance } from "../server";
+import styles from "../../styles/styles";
+import { instance } from "../../server";
 import { redirect, useNavigate } from "react-router-dom";
-import ButtonSpinner from "./ButtonSpinner";
+import ButtonSpinner from "../ButtonSpinner";
 
-import { login } from "../redux/actions/UserSlice";
+import { login } from "../../redux/actions/UserSlice";
 import { useDispatch } from "react-redux";
-import { encryptStorage } from "../utils/secure-storage";
+import { encryptStorage } from "../../utils/secure-storage";
 import { useTranslation } from "react-i18next";
 
 const CreateUser = () => {

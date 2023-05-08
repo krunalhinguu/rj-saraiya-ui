@@ -5,6 +5,7 @@ import { instance } from "../../server";
 import ButtonSpinner from "../ButtonSpinner";
 import Spinner from "../Spinner";
 import { useTranslation } from "react-i18next";
+import CustomDialoag from "../CustomDialoag";
 
 // table header
 const headers = [
@@ -36,6 +37,10 @@ const headers = [
     key: "totalAmount",
     name: "common.totalAmount",
   },
+  {
+    key: "actions",
+    name: "",
+  },
 ];
 
 const filters = [
@@ -51,6 +56,7 @@ const ViewOrder = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [data, setData] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
@@ -183,7 +189,7 @@ const ViewOrder = () => {
                   {data &&
                     data.length > 0 &&
                     data.map((item, index) => (
-                      <TableRow key={index} data={item} />
+                      <TableRow key={index} data={item} fetchAll={fetchAll} />
                     ))}
                 </tbody>
               </table>

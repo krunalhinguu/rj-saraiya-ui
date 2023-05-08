@@ -1,12 +1,13 @@
 import React from "react";
-import CreateUser from "../components/CreateUser";
+
 import Header from "../components/Header";
+import User from "../components/User/User";
 
 const UserPage = () => {
   return (
     <div className="w-full h-screen">
       <Header />
-      <CreateUser />
+      <User />
     </div>
   );
 };

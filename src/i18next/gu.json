@@ -7,7 +7,7 @@
         "expense": "ખર્ચો",
         "purchase": "ખરીદી",
         "inventory": "વસ્તુની યાદી",
-        "createUser": "યુઝર બનાવો"
+        "manage": "Manage"
     },
     "tabs": {
         "createOrder": "ઓર્ડર બનાવો",
@@ -28,7 +28,9 @@
         "addGoodsPurchase": "માલની ખરીદી નાખો",
         "addProductType": "વસ્તુનો ટાઈપ નાખો",
         "addProductSubType": "વસ્તુનો સબ-ટાઈપ નાખો",
-        "addProduct": "વસ્તુઓ નાખો"
+        "addProduct": "વસ્તુઓ નાખો",
+        "createUser": "યુઝર બનાવો",
+        "manageUser": "યુઝર મેનેજ કરો"
     },
     "common": {
         "login": "લોગીન",
@@ -92,6 +94,14 @@
         "size": "માપ",
         "frequentlyUsed": "વધારે વપરાતી વસ્તુ?",
         "totalHours": "કલાક",
-        "expenseTotal": "કુલ ખર્ચો"
+        "expenseTotal": "કુલ ખર્ચો",
+        "online": "ઓનલાઇન",
+        "totalIncome": "કુલ આવક",
+        "username": "યુઝરનેમ",
+        "password": "પાસવર્ડ",
+        "shopStock": "દુકાનમાં માલ",
+        "godownStock": "વખારમાં માલ",
+        "shopValue": "દુકાનના માલની કિંમત",
+        "godownValue": "વખારના માલની કિંમત"
     }
 }

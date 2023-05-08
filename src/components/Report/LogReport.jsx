@@ -12,6 +12,7 @@ import { NumericFormat } from "react-number-format";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 import { useSelector } from "react-redux";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -32,6 +33,10 @@ const headers = [
   {
     key: "mandirMa",
     name: "common.mandirMa",
+  },
+  {
+    key: "online",
+    name: "common.online",
   },
   {
     key: "date",
@@ -104,6 +109,7 @@ const LogReport = () => {
     formik.setFieldValue("totalAmount", d.totalAmount);
     formik.setFieldValue("gallaAmount", d.gallaAmount);
     formik.setFieldValue("mandirAmount", d.mandirAmount);
+    formik.setFieldValue("onlineAmount", d.onlineAmount);
   };
 
   const handleDelete = (id) => {
@@ -117,25 +123,29 @@ const LogReport = () => {
       totalAmount: "",
       gallaAmount: "",
       mandirAmount: "",
-      date: new Date(),
+      onlineAmount: "",
+      date: date,
     },
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
 
       // calculating total value
-      values.totalAmount = values.gallaAmount + values.mandirAmount;
+      values.totalAmount =
+        values.gallaAmount + values.mandirAmount + values.onlineAmount;
 
       instance
         .post("report", values)
         .then(({ data }) => {
           if (data.responseCode === "OK") {
+            alert("data added succesfully");
             fetchAll();
             resetForm();
           }
           setIsLoading(false);
         })
         .catch((error) => {
+          alert("Error Occured.");
           setIsLoading(false);
           console.error(error);
         });
@@ -186,6 +196,20 @@ const LogReport = () => {
               ) : null}
             </div>
 
+            {/* Mandir Amount */}
+            <div>
+              <span className={`${styles.label}`}>{t("common.online")}</span>
+              <input
+                type="number"
+                name="onlineAmount"
+                value={formik.values.online}
+                onChange={formik.handleChange}
+                onFocus={(e) => e.target.select()}
+                className={`${styles.input}`}
+                placeholder="₹"
+              />
+            </div>
+
             {/* Total Amount */}
             <div>
               <span className={`${styles.label}`}>
@@ -195,30 +219,17 @@ const LogReport = () => {
                 disabled
                 type="number"
                 name="totalAmount"
-                value={formik.values.gallaAmount + formik.values.mandirAmount}
+                value={
+                  formik.values.gallaAmount +
+                  formik.values.mandirAmount +
+                  formik.values.onlineAmount
+                }
                 onChange={formik.handleChange}
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
                 placeholder="₹"
               />
             </div>
-
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                placeholder="Enter Details About Product"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
-              />
-            </div>
-            {formik.errors.date ? (
-              <div className={`${styles.error}`}>{formik.errors.date}</div>
-            ) : null}
           </div>
           {/* buttons */}
           <div className="mt-6 mb-2">
@@ -242,6 +253,7 @@ const LogReport = () => {
       {isDataLoading ? (
         <Spinner />
       ) : (
+        user.data.role === "admin" &&
         data &&
         data.length > 0 && (
           <div className="relative overflow-x-auto sm:rounded-lg mt-5">
@@ -294,26 +306,32 @@ const LogReport = () => {
                         />
                       </td>
                       <td className="px-6 py-4">
+                        <NumericFormat
+                          value={d.onlineAmount}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"₹"}
+                        />
+                      </td>
+                      <td className="px-6 py-4">
                         {moment(d.date).format(DATE_FORMAT)}
                       </td>
 
                       <td className="flex items-center px-6 py-4 space-x-3">
-                        {user.data.role === "admin" && (
-                          <div className="flex gap-x-4">
-                            <button
-                              className="font-medium text-blue-600  hover:underline"
-                              onClick={() => handleEdit(d)}
-                            >
-                              Edit
-                            </button>
-                            <button
-                              className="font-medium text-red-600  hover:underline"
-                              onClick={() => handleDelete(d.id)}
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        )}
+                        <div className="flex gap-x-4">
+                          <button
+                            className="font-medium text-blue-600  hover:underline"
+                            onClick={() => handleEdit(d)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="font-medium text-red-600  hover:underline"
+                            onClick={() => handleDelete(d.id)}
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

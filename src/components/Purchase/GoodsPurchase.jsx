@@ -15,6 +15,7 @@ import Spinner from "../Spinner";
 import CustomDialoag from "../CustomDialoag";
 import { useSelector } from "react-redux";
 import { ReactTransliterate } from "react-transliterate";
+import { date } from "../../utils/common";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -91,6 +92,8 @@ const GoodsPurchase = () => {
 
   const handlePaymentStatus = (e) => {
     const status = e.target.value;
+
+    formik.setFieldValue("paymentStatus", status);
 
     if (status === "paid")
       formik.setFieldValue("amountPaid", formik.values.amount);
@@ -175,7 +178,7 @@ const GoodsPurchase = () => {
       amount: "",
       paymentStatus: "",
       amountPaid: "",
-      date: new Date(),
+      date: date,
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
@@ -211,7 +214,7 @@ const GoodsPurchase = () => {
               <select
                 id="dealer"
                 className={`${styles.inputSelect}`}
-                value={formik.values.productType}
+                value={formik.values.dealer}
                 onChange={formik.handleChange}
               >
                 <option>Choose Dealer Name</option>
@@ -338,20 +341,6 @@ const GoodsPurchase = () => {
                 onFocus={(e) => e.target.select()}
                 className={`${styles.input}`}
                 placeholder="₹ 10000, 20000"
-              />
-            </div>
-
-            {/* date */}
-            <div>
-              <span className={`${styles.label}`}>{t("common.date")}</span>
-              <ReactDatePicker
-                disabled
-                type="text"
-                name="date"
-                dateFormat="dd/MM/yyyy"
-                selected={formik.values.date}
-                onFocus={(e) => e.target.select()}
-                className={`${styles.input}`}
               />
             </div>
           </div>

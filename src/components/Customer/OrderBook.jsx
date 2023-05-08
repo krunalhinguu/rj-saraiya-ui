@@ -9,6 +9,7 @@ import ButtonSpinner from "../ButtonSpinner";
 import moment from "moment";
 import { DATE_FORMAT } from "../../data/const";
 import { useTranslation } from "react-i18next";
+import { date, localDate } from "../../utils/common";
 
 // table header
 const headers = [
@@ -60,8 +61,8 @@ const OrderBook = () => {
   // formik
   const formik = useFormik({
     initialValues: {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: date,
+      endDate: date,
     },
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
@@ -99,7 +100,9 @@ const OrderBook = () => {
                 className={`${styles.input}`}
                 selected={formik.values.startDate}
                 onFocus={(e) => e.target.select()}
-                onChange={(date) => formik.setFieldValue("startDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("startDate", localDate(date))
+                }
               />
             </div>
 
@@ -114,7 +117,9 @@ const OrderBook = () => {
                 showMonthDropdown
                 className={`${styles.input}`}
                 selected={formik.values.endDate}
-                onChange={(date) => formik.setFieldValue("endDate", date)}
+                onChange={(date) =>
+                  formik.setFieldValue("endDate", localDate(date))
+                }
                 onFocus={(e) => e.target.select()}
               />
             </div>
