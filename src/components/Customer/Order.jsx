@@ -209,9 +209,9 @@ const Order = () => {
       selectedOptions &&
       selectedOptions.length > 0 &&
       selectedOptions.reduce((prev, d) => {
-        if (d.totalAmount) d.totalAmount + prev;
-        else if (d.quantity) d.price * d.quantity + prev;
-        else d.price + prev;
+        if (d.totalAmount) return d.totalAmount + prev;
+        else if (d.quantity) return d.price * d.quantity + prev;
+        else return d.price + prev;
       }, 0);
     return totalExpense || 0;
   };
