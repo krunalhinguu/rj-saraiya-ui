@@ -23,6 +23,7 @@ const formSchema = Yup.object().shape({
   dealer: Yup.number().required("Required Field"),
   items: Yup.number().required("Required Field"),
   amount: Yup.number().required("Required Field"),
+  paymentStatus: Yup.string().required("Required Field"),
 });
 
 // table header
@@ -326,6 +327,11 @@ const GoodsPurchase = () => {
                 <option value="unpaid">unpaid</option>
                 <option value="partialPaid">partial paid</option>
               </select>
+              {formik.errors.paymentStatus && formik.touched.paymentStatus ? (
+                <div className={`${styles.error}`}>
+                  {formik.errors.paymentStatus}
+                </div>
+              ) : null}
             </div>
 
             {/* Amount Paid */}
