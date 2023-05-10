@@ -15,10 +15,8 @@ const ConfirmWindow = ({
     const { items } = order;
 
     const totalAmount = items.reduce((acc, item) => {
-      let amount;
-      if (item.quantity) amount = item.price * item.quantity;
-      else amount = item.price;
-      return amount + acc;
+      if (item.quantity) return item.price * item.quantity + acc;
+      else return item.price + acc;
     }, 0);
 
     return totalAmount;

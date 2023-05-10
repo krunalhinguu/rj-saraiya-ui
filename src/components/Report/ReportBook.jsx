@@ -57,7 +57,7 @@ const ReportBook = () => {
   const totalExpense = (data) => {
     let amount = 0;
 
-    if (data.gallaAmount) amount += data.gallaAmount;
+    // if (data.gallaAmount) amount += data.gallaAmount;
     if (data.mandirAmount) amount += data.mandirAmount;
     if (data.onlineAmount) amount += data.onlineAmount;
     if (data.expenseTotal) amount -= data.expenseTotal;
@@ -93,9 +93,7 @@ const ReportBook = () => {
   };
 
   const getTotalIncome = () => {
-    return (
-      getGallAmount() + getMandirAmount() + getOnlineAmount() - getTotalAmount()
-    );
+    return getMandirAmount() + getOnlineAmount() - getTotalAmount();
   };
 
   // formik
