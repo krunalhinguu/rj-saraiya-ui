@@ -6,12 +6,8 @@ const AboutPage = () => {
       {/* info */}
       <section class="flex flex-col gap-10 bg-gray-50 my-10 mx-10 justify-center items-center md:flex-row lg:gap-40 lg:my-20">
         {/* image-1*/}
-        <div class="w-36">
-          <img
-            class="rounded-full border-4 border-solid border-red-300 shadow-sm"
-            src="https://randomuser.me/api/portraits/men/18.jpg"
-            alt="user"
-          />
+        <div class="w-64">
+          <img class="shadow-sm" src="./images/founder.jpg" alt="user" />
           <p className="mt-2 text-center font-bold">Ramanlal J Raval</p>
           <p className="text-center font-bold text-sm text-slate-500">
             (Founder)
@@ -24,7 +20,7 @@ const AboutPage = () => {
               Ramanlal J Saraiya
             </h1>
             <p class="max-w-3xl mb-3 text-gray-500 md:text-lg lg:text-xl ">
-              Established in the 1980s by Ramanlal J. Raval, our shop stands as
+              Established in the 1930s by Ramanlal J Raval, our shop stands as
               one of the oldest and most trusted establishments in the town.
               With a rich heritage spanning four generations, we specialize in
               providing top-quality saffron turmeric/केशर पीठी, Mataji Pujapa
@@ -33,20 +29,16 @@ const AboutPage = () => {
             <p class="max-w-2xl mb-3 text-gray-500 md:text-lg lg:text-xl">
               Our success and longevity can be attributed to the unwavering
               dedication of our family, who have diligently carried forward the
-              legacy initiated by Ramanlal J. Saraiya. By embracing new
+              legacy initiated by Ramanlal J. Raval. By embracing new
               opportunities and staying true to our roots, we have not only
               survived but thrived in the ever-changing market
             </p>
           </div>
         </div>
         {/* image-2 */}
-        <div class="w-36">
-          <img
-            class="rounded-full border-4 border-solid border-red-300 shadow-sm"
-            src="https://randomuser.me/api/portraits/men/71.jpg"
-            alt="user "
-          />
-          <p className="mt-2 text-center font-bold">Ramanlal J Raval</p>
+        <div class="w-64">
+          <img class="shadow-sm" src="./images/co-founder.jpg" alt="user " />
+          <p className="mt-2 text-center font-bold">Pankaj A Raval</p>
           <p className="text-center font-bold text-sm text-slate-500">
             (Co-Founder)
           </p>
@@ -62,65 +54,65 @@ const AboutPage = () => {
           <div className="slider">
             <div className="slide-track">
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image4.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image5.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image6.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image7.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image8.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image2.jpg" alt="product-iamge" />
               </div>
               {/* <!-- same 9 slides doubled (duplicate) --> */}
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image4.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image5.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image6.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image7.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image8.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image1.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/2.jpg" alt="product-iamge" />
+                <img src="./images/image2.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/3.jpg" alt="product-iamge" />
+                <img src="./images/image3.jpg" alt="product-iamge" />
               </div>
               <div className="slide">
-                <img src="./images/1.jpg" alt="product-iamge" />
+                <img src="./images/image4.jpg" alt="product-iamge" />
               </div>
             </div>
           </div>
@@ -189,7 +181,7 @@ const AboutPage = () => {
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
-                Established in the 1980s by Ramanlal J. Raval
+                Established in the 1930s by Ramanlal J. Raval
               </h2>
               <p className="mb-8 font-light lg:text-xl">
                 Situated in Tran Darwaja (Ahmedabad), our shop holds the
@@ -207,7 +199,7 @@ const AboutPage = () => {
             </div>
             <img
               className="w-full mb-4 rounded-lg lg:mb-0 lg:flex"
-              src="./images/4.jpg"
+              src="./images/old.jpg"
               alt="dashboard feature product"
             />
           </div>
@@ -215,12 +207,12 @@ const AboutPage = () => {
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
             <img
               className="w-full mb-4 rounded-lg lg:mb-0 lg:flex"
-              src="./images/5.jpg"
+              src="./images/new.jpg"
               alt="feature product 2"
             />
             <div className="text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
-                Even after 40 years
+                Even after more than 90 years
               </h2>
               <p className="mb-8 font-light lg:text-xl">
                 We proudly maintain our position as the best in the market. Our
