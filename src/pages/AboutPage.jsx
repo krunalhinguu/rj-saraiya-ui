@@ -24,6 +24,7 @@ const AboutPage = () => {
                   class=" font-semibold text-white inline-flex items-center space-x-2 rounded"
                   href="https://www.facebook.com/profile.php?id=100093529302348&mibextid=LQQJ4d"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     class="w-10 h-10 fill-current"
@@ -40,6 +41,7 @@ const AboutPage = () => {
                   class=" font-semibold text-white inline-flex items-center space-x-2 rounded"
                   href="https://www.instagram.com/rjsaraiya/  "
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +98,7 @@ const AboutPage = () => {
                   class="bg-blue-400 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
                   href="https://twitter.com/rjsaraiya"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     class="w-5 h-5 fill-current"
@@ -113,6 +116,7 @@ const AboutPage = () => {
                   class=" m-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
                   href="https://wa.me/message/N4GAW62EQ6ALI1"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     class="w-10 h-10 fill-current"
