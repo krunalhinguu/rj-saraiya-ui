@@ -98,7 +98,7 @@ button:disabled {
 /*  IMPORTANT CODE BELOW */
 
 .slide-track {
-  width: calc(500px * 20);
+  width: calc(500px * 14);
   display: flex;
   animation: scroll 25s linear infinite;
   justify-content: space-between;

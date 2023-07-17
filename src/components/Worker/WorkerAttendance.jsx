@@ -11,6 +11,8 @@ import Spinner from "../Spinner";
 import ButtonSpinner from "../ButtonSpinner";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { date, localDate } from "../../utils/common";
+import "moment-timezone";
 
 // validation
 const formSchema = Yup.object().shape({
@@ -45,6 +47,8 @@ const headers = [
     name: "",
   },
 ];
+
+moment.tz.setDefault("Asia/Kolkata");
 
 const WorkerAttendance = () => {
   const props = useSelector((state) => state);
@@ -138,13 +142,21 @@ const WorkerAttendance = () => {
       worker: "",
       date: moment(),
       present: "",
-      start: moment().toDate(),
-      end: moment().toDate(),
+      start: null,
+      end: null,
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
-      values.startTime = values.start && values.start.toISOString();
-      values.endTime = values.end && values.end.toISOString();
+      values.startTime = values.start && moment(values.start);
+      console.log(
+        "🚀 ~ file: WorkerAttendance.jsx:151 ~ WorkerAttendance ~ startTime:",
+        startTime,
+      );
+      values.endTime = values.end && moment(values.end);
+      console.log(
+        "🚀 ~ file: WorkerAttendance.jsx:153 ~ WorkerAttendance ~ endTime:",
+        endTime,
+      );
 
       // Calculate the difference in hours between the start and end times
       const startTime = moment(values.startTime);
