@@ -4,20 +4,48 @@ const AboutPage = () => {
   return (
     <body className="bg-gray-50">
       {/* info */}
-      <section class="flex flex-col gap-10 bg-gray-50 my-10 mx-10 justify-center items-center md:flex-row lg:gap-40 lg:my-20">
+
+      <section class="flex flex-col m-10 items-center justify-center gap-1 md:flex-row lg:flex-col xl:flex-row lg:gap-20 lg:my-10">
         {/* image-1*/}
-        <div className="w-90">
-          <img class="" src="./images/logo.png" alt="user" />
-        </div>
+
+        <img
+          src="./images/logo.png"
+          alt="logo"
+          className="w-full h-auto sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6"
+        />
+
         {/* text */}
         <div>
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-[#e40414] text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
               Ramanlal J Saraiya
             </h1>
-            <p className="max-w-2xl mb-4 text-gray-400 text-xl font-extrabold leading-none tracking-tight md:text-xl xl:text-xl ">
-              <div class="flex flex-wrap gap-2">
-                <p className="text-md">Follow us on @rjsaraiya</p>
+
+            <p class="max-w-3xl text-gray-500 md:text-lg lg:text-xl ">
+              Welcome to our esteemed shop, where tradition meets excellence in
+              craftsmanship. With <b>over 90 years</b> of expertise, Your
+              one-stop shop for fragrances, wedding essentials, divine
+              offerings, and traditional adornments.
+            </p>
+            <p class="max-w-3xl mb-3 text-gray-500 md:text-lg lg:text-xl">
+              Steeped in tradition, we understand the importance of wedding
+              rituals and the cultural significance they hold. Our extensive
+              range of wedding ritual items showcases the rich diversity and
+              artistry of different cultures, allowing you to find the perfect
+              elements to enhance your special day. Whether you're seeking
+              intricately designed puja thalis, ornate garlands, sacred thread
+              ceremonies accessories, or ceremonial lamps, we have a wide
+              selection to cater to your specific needs.
+            </p>
+            <p className="mt-5 max-w-2xl mb-4 text-gray-400 text-xl font-extrabold leading-none tracking-tight md:text-xl xl:text-xl ">
+              <p className="text-[18px] flex items-center">
+                To order call/ whastapp us on +91-9879973280.
+              </p>
+              <p className="mt-2 text-[18px] flex items-center sm:text-[10px] md:text-[16px] ">
+                Email us at ramanlaljsaraiya@gmail.com
+              </p>
+              <div class="flex flex-wrap my-5 gap-2">
+                <p className="text-[18px] flex items-center">Follow us on</p>
 
                 {/* facebook */}
                 <a
@@ -109,11 +137,9 @@ const AboutPage = () => {
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                   </svg>
                 </a>
-              </div>
-              <p className="mt-5 flex items-center">
-                To order call/ whastapp us on {/* whatsapp */}
+
                 <a
-                  class=" m-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
+                  class="font-semibold text-white inline-flex items-center space-x-2 rounded"
                   href="https://wa.me/message/N4GAW62EQ6ALI1"
                   target="_blank"
                   rel="noreferrer"
@@ -127,36 +153,18 @@ const AboutPage = () => {
                     <path d="M224 122.8c-72.7 0-131.8 59.1-131.9 131.8 0 24.9 7 49.2 20.2 70.1l3.1 5-13.3 48.6 49.9-13.1 4.8 2.9c20.2 12 43.4 18.4 67.1 18.4h.1c72.6 0 133.3-59.1 133.3-131.8 0-35.2-15.2-68.3-40.1-93.2-25-25-58-38.7-93.2-38.7zm77.5 188.4c-3.3 9.3-19.1 17.7-26.7 18.8-12.6 1.9-22.4.9-47.5-9.9-39.7-17.2-65.7-57.2-67.7-59.8-2-2.6-16.2-21.5-16.2-41s10.2-29.1 13.9-33.1c3.6-4 7.9-5 10.6-5 2.6 0 5.3 0 7.6.1 2.4.1 5.7-.9 8.9 6.8 3.3 7.9 11.2 27.4 12.2 29.4s1.7 4.3.3 6.9c-7.6 15.2-15.7 14.6-11.6 21.6 15.3 26.3 30.6 35.4 53.9 47.1 4 2 6.3 1.7 8.6-1 2.3-2.6 9.9-11.6 12.5-15.5 2.6-4 5.3-3.3 8.9-2 3.6 1.3 23.1 10.9 27.1 12.9s6.6 3 7.6 4.6c.9 1.9.9 9.9-2.4 19.1zM400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM223.9 413.2c-26.6 0-52.7-6.7-75.8-19.3L64 416l22.5-82.2c-13.9-24-21.2-51.3-21.2-79.3C65.4 167.1 136.5 96 223.9 96c42.4 0 82.2 16.5 112.2 46.5 29.9 30 47.9 69.8 47.9 112.2 0 87.4-72.7 158.5-160.1 158.5z" />
                   </svg>
                 </a>
-                +91-9879973280.
-              </p>
-              <p>For any queries email us at ramanlaljsaraiya@gmail.com</p>
-            </p>
-            <p class="max-w-3xl mb-3 text-gray-500 md:text-lg lg:text-xl ">
-              Welcome to our esteemed shop, where tradition meets excellence in
-              craftsmanship. With <b>over 90 years</b> of expertise, Your
-              one-stop shop for fragrances, wedding essentials, divine
-              offerings, and traditional adornments.
-            </p>
-            <p class="max-w-3xl mb-3 text-gray-500 md:text-lg lg:text-xl">
-              Steeped in tradition, we understand the importance of wedding
-              rituals and the cultural significance they hold. Our extensive
-              range of wedding ritual items showcases the rich diversity and
-              artistry of different cultures, allowing you to find the perfect
-              elements to enhance your special day. Whether you're seeking
-              intricately designed puja thalis, ornate garlands, sacred thread
-              ceremonies accessories, or ceremonial lamps, we have a wide
-              selection to cater to your specific needs.
+              </div>
             </p>
           </div>
         </div>
         {/* image-2 */}
-        <div class="flex">
+        <div class="flex flex-col md:flex-row sm:flex-row">
           <div className="lg:w-80 sm:w-50 md:w-50">
-            <img class="shadow-sm" src="./images/founder.jpg" alt="user " />
+            <img src="./images/founder.jpeg" alt="user " />
             <p className="mt-2 text-center font-bold">Ramanlal J Raval</p>
           </div>
           <div className="lg:w-80 sm:w-50 md:w-50">
-            <img class="shadow-sm" src="./images/co-founder.jpg" alt="user " />
+            <img src="./images/co-founder.jpeg" alt="user " />
             <p className="mt-2 text-center font-bold">Pankaj A Raval</p>
           </div>
         </div>

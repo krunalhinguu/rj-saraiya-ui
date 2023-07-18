@@ -62,7 +62,7 @@ const Login = () => {
       >
         <div className="w-full mx-auto px-20 flex-col space-y-6 mt-[20vh]">
           {/* logo */}
-          <img src="logo512.png" alt="logo" className="w-80 mx-auto" />
+          <img src="logo.png" alt="logo" className="w-80 mx-auto" />
           {/* text */}
           <div className="w-max">
             <h1 className="font-Mukta animate-typing overflow-hidden p-3 break-all whitespace-nowrap border-r-4 border-r-[#e40414] pr-5 text-5xl text-[#e40414] font-bold">
