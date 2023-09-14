@@ -240,6 +240,7 @@ const LogExpense = () => {
       {isDataLoading ? (
         <Spinner />
       ) : (
+        user.data.role === "admin" &&
         data &&
         data.length > 0 && (
           <div className="relative overflow-x-auto sm:rounded-lg mt-5">
